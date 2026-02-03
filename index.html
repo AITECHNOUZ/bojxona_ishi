@@ -49,11 +49,31 @@
         .accordion-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease-out;
+            transition: max-height 0.5s ease-out;
         }
 
         .accordion-content.active {
-            max-height: 1000px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        /* Custom scrollbar for accordion content */
+        .accordion-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .accordion-content::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+
+        .accordion-content::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #3b82f6, #1d4ed8);
+            border-radius: 4px;
+        }
+
+        .accordion-content::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #2563eb, #1e40af);
         }
 
         .section-title::after {
@@ -148,13 +168,8 @@
     </nav>
 
     <!-- 1. HERO SECTION -->
-    <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <!-- University Badge -->
-            <div class="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-8 border border-white/20">
-                <i class="fas fa-graduation-cap text-yellow-400 mr-2"></i>
-            </div>
-
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative pt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-12">
             <!-- Main Title -->
             <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6">
                 BOJXONA ISHI
@@ -175,16 +190,18 @@
 
             <!-- CTA Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-                <a href="#documents" class="inline-flex items-center justify-center bg-gradient-to-r from-yellow-500 to-yellow-600 text-blue-900 px-8 py-4 rounded-lg font-semibold hover:from-yell[...]<|vq_14428|>            <i class="fas fa-book-open mr-2"></i>
-                O'quv materiallar
+                <a href="#documents" class="inline-flex items-center justify-center bg-gradient-to-r from-yellow-500 to-yellow-600 text-blue-900 px-8 py-4 rounded-lg font-semibold hover:from-yellow-400 hover:to-yellow-500 transition-all shadow-lg">
+                    <i class="fas fa-book-open mr-2"></i>
+                    O'quv materiallar
                 </a>
-                <a href="#about" class="inline-flex items-center justify-center bg-white/10 backdrop-blur-sm text-white border border-white/30 px-8 py-4 rounded-lg font-semibold hover:bg-white/20[...]<|diff_marker|>            <i class="fas fa-info-circle mr-2"></i>
-                Batafsil ma'lumot
+                <a href="#about" class="inline-flex items-center justify-center bg-white/10 backdrop-blur-sm text-white border border-white/30 px-8 py-4 rounded-lg font-semibold hover:bg-white/20 transition-all">
+                    <i class="fas fa-info-circle mr-2"></i>
+                    Batafsil ma'lumot
                 </a>
             </div>
 
             <!-- Stats -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-4xl mx-auto">
                 <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
                     <div class="text-3xl font-bold text-yellow-400 mb-1">15</div>
                     <div class="text-sm text-gray-300">Ma'ruzalar</div>
@@ -205,7 +222,7 @@
         </div>
 
         <!-- Scroll Indicator -->
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 scroll-indicator">
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 scroll-indicator">
             <a href="#about" class="flex flex-col items-center text-white/70 hover:text-white transition-colors">
                 <span class="text-sm mb-2">Pastga aylantiring</span>
                 <i class="fas fa-chevron-down text-2xl"></i>
@@ -252,19 +269,19 @@
                     <h3 class="text-xl font-bold text-gray-900 mb-4">Fan vazifalari</h3>
                     <ul class="text-gray-700 space-y-2">
                         <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
+                            <i class="fas fa-check-circle text-green-600 mt-1 mr-2 flex-shrink-0"></i>
                             <span>Bojxona qonunchiligini o'rgatish</span>
                         </li>
                         <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
+                            <i class="fas fa-check-circle text-green-600 mt-1 mr-2 flex-shrink-0"></i>
                             <span>Bojxona rasmiylashtiruv jarayonlarini tahlil qilish</span>
                         </li>
                         <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
+                            <i class="fas fa-check-circle text-green-600 mt-1 mr-2 flex-shrink-0"></i>
                             <span>Tovar va transport vositalarini nazorat qilish usullarini o'rganish</span>
                         </li>
                         <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
+                            <i class="fas fa-check-circle text-green-600 mt-1 mr-2 flex-shrink-0"></i>
                             <span>Xalqaro bojxona amaliyotini tahlil qilish</span>
                         </li>
                     </ul>
@@ -278,19 +295,19 @@
                     <h3 class="text-xl font-bold text-gray-900 mb-4">O'rganish natijalari</h3>
                     <ul class="text-gray-700 space-y-2">
                         <li class="flex items-start">
-                            <i class="fas fa-star text-yellow-500 mt-1 mr-2"></i>
+                            <i class="fas fa-star text-yellow-500 mt-1 mr-2 flex-shrink-0"></i>
                             <span>Bojxona hujjatlarini to'g'ri rasmiylashtirish</span>
                         </li>
                         <li class="flex items-start">
-                            <i class="fas fa-star text-yellow-500 mt-1 mr-2"></i>
+                            <i class="fas fa-star text-yellow-500 mt-1 mr-2 flex-shrink-0"></i>
                             <span>Bojxona to'lovlarini hisoblash</span>
                         </li>
                         <li class="flex items-start">
-                            <i class="fas fa-star text-yellow-500 mt-1 mr-2"></i>
+                            <i class="fas fa-star text-yellow-500 mt-1 mr-2 flex-shrink-0"></i>
                             <span>Import-eksport operatsiyalarini tahlil qilish</span>
                         </li>
                         <li class="flex items-start">
-                            <i class="fas fa-star text-yellow-500 mt-1 mr-2"></i>
+                            <i class="fas fa-star text-yellow-500 mt-1 mr-2 flex-shrink-0"></i>
                             <span>Bojxona kodlarini aniqlash va qo'llash</span>
                         </li>
                     </ul>
@@ -338,7 +355,7 @@
                     </div>
                     <h3 class="text-lg font-bold text-white text-center mb-4">Bojxona tushunchasi</h3>
                     <p class="text-gray-400 text-sm text-center leading-relaxed">
-                        Bojxona — davlat chegara orqali o'tadigan tovarlar va transport vositalarini 
+                        Bojxona – davlat chegara orqali o'tadigan tovarlar va transport vositalarini 
                         nazorat qiluvchi, bojxona to'lovlarini undiruvchi davlat organi.
                     </p>
                 </div>
@@ -351,20 +368,20 @@
                     <h3 class="text-lg font-bold text-white text-center mb-4">Bojxona organlari tizimi</h3>
                     <ul class="text-gray-400 text-sm space-y-2">
                         <li class="flex items-center">
-                            <i class="fas fa-angle-right text-green-400 mr-2"></i>
-                            Davlat bojxona qo'mitasi
+                            <i class="fas fa-angle-right text-green-400 mr-2 flex-shrink-0"></i>
+                            <span>Davlat bojxona qo'mitasi</span>
                         </li>
                         <li class="flex items-center">
-                            <i class="fas fa-angle-right text-green-400 mr-2"></i>
-                            Hududiy bojxona boshqarmalari
+                            <i class="fas fa-angle-right text-green-400 mr-2 flex-shrink-0"></i>
+                            <span>Hududiy bojxona boshqarmalari</span>
                         </li>
                         <li class="flex items-center">
-                            <i class="fas fa-angle-right text-green-400 mr-2"></i>
-                            Bojxona postlari
+                            <i class="fas fa-angle-right text-green-400 mr-2 flex-shrink-0"></i>
+                            <span>Bojxona postlari</span>
                         </li>
                         <li class="flex items-center">
-                            <i class="fas fa-angle-right text-green-400 mr-2"></i>
-                            Maxsus bojxona komplekslari
+                            <i class="fas fa-angle-right text-green-400 mr-2 flex-shrink-0"></i>
+                            <span>Maxsus bojxona komplekslari</span>
                         </li>
                     </ul>
                 </div>
@@ -377,20 +394,20 @@
                     <h3 class="text-lg font-bold text-white text-center mb-4">Import–eksport nazorati</h3>
                     <ul class="text-gray-400 text-sm space-y-2">
                         <li class="flex items-center">
-                            <i class="fas fa-angle-right text-yellow-400 mr-2"></i>
-                            Tovarlarni deklaratsiya qilish
+                            <i class="fas fa-angle-right text-yellow-400 mr-2 flex-shrink-0"></i>
+                            <span>Tovarlarni deklaratsiya qilish</span>
                         </li>
                         <li class="flex items-center">
-                            <i class="fas fa-angle-right text-yellow-400 mr-2"></i>
-                            Bojxona qiymatini aniqlash
+                            <i class="fas fa-angle-right text-yellow-400 mr-2 flex-shrink-0"></i>
+                            <span>Bojxona qiymatini aniqlash</span>
                         </li>
                         <li class="flex items-center">
-                            <i class="fas fa-angle-right text-yellow-400 mr-2"></i>
-                            Tarif va kvotalar boshqaruvi
+                            <i class="fas fa-angle-right text-yellow-400 mr-2 flex-shrink-0"></i>
+                            <span>Tarif va kvotalar boshqaruvi</span>
                         </li>
                         <li class="flex items-center">
-                            <i class="fas fa-angle-right text-yellow-400 mr-2"></i>
-                            Sertifikatlash va litsenziyalash
+                            <i class="fas fa-angle-right text-yellow-400 mr-2 flex-shrink-0"></i>
+                            <span>Sertifikatlash va litsenziyalash</span>
                         </li>
                     </ul>
                 </div>
@@ -403,20 +420,20 @@
                     <h3 class="text-lg font-bold text-white text-center mb-4">Xalqaro bojxona amaliyoti</h3>
                     <ul class="text-gray-400 text-sm space-y-2">
                         <li class="flex items-center">
-                            <i class="fas fa-angle-right text-purple-400 mr-2"></i>
-                            Jahon bojxona tashkiloti (WCO)
+                            <i class="fas fa-angle-right text-purple-400 mr-2 flex-shrink-0"></i>
+                            <span>Jahon bojxona tashkiloti (WCO)</span>
                         </li>
                         <li class="flex items-center">
-                            <i class="fas fa-angle-right text-purple-400 mr-2"></i>
-                            HS kodlash tizimi
+                            <i class="fas fa-angle-right text-purple-400 mr-2 flex-shrink-0"></i>
+                            <span>HS kodlash tizimi</span>
                         </li>
                         <li class="flex items-center">
-                            <i class="fas fa-angle-right text-purple-400 mr-2"></i>
-                            Xalqaro konvensiyalar
+                            <i class="fas fa-angle-right text-purple-400 mr-2 flex-shrink-0"></i>
+                            <span>Xalqaro konvensiyalar</span>
                         </li>
                         <li class="flex items-center">
-                            <i class="fas fa-angle-right text-purple-400 mr-2"></i>
-                            Savdo kelishuvlari
+                            <i class="fas fa-angle-right text-purple-400 mr-2 flex-shrink-0"></i>
+                            <span>Savdo kelishuvlari</span>
                         </li>
                     </ul>
                 </div>
@@ -425,29 +442,29 @@
             <!-- Diagram Section -->
             <div class="mt-16 bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
                 <h3 class="text-xl font-bold text-white text-center mb-8">Bojxona jarayoni bosqichlari</h3>
-                <div class="flex flex-wrap justify-center items-center gap-4">
+                <div class="flex flex-wrap justify-center items-center gap-4 md:gap-6">
                     <div class="flex items-center">
-                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">1</div>
+                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">1</div>
                         <span class="ml-3 text-gray-300 text-sm">Deklaratsiya</span>
                     </div>
                     <i class="fas fa-arrow-right text-gray-500 hidden md:block"></i>
                     <div class="flex items-center">
-                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">2</div>
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">2</div>
                         <span class="ml-3 text-gray-300 text-sm">Hujjat tekshiruvi</span>
                     </div>
                     <i class="fas fa-arrow-right text-gray-500 hidden md:block"></i>
                     <div class="flex items-center">
-                        <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold">3</div>
+                        <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">3</div>
                         <span class="ml-3 text-gray-300 text-sm">Tovar ko'rigi</span>
                     </div>
                     <i class="fas fa-arrow-right text-gray-500 hidden md:block"></i>
                     <div class="flex items-center">
-                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold">4</div>
+                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">4</div>
                         <span class="ml-3 text-gray-300 text-sm">To'lov</span>
                     </div>
                     <i class="fas fa-arrow-right text-gray-500 hidden md:block"></i>
                     <div class="flex items-center">
-                        <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white font-bold">5</div>
+                        <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">5</div>
                         <span class="ml-3 text-gray-300 text-sm">Chiqarish</span>
                     </div>
                 </div>
@@ -469,152 +486,99 @@
                 </p>
             </div>
 
-            <!-- Accordion Documents -->
-            <div class="max-w-4xl mx-auto space-y-4">
+            <!-- Documents Grid -->
+            <div class="max-w-5xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                
                 <!-- Sillabus -->
-                <div class="doc-card rounded-2xl shadow-lg overflow-hidden border border-gray-100">
-                    <button class="accordion-btn w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors" onclick="toggleAccordion(this)">
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
-                                <i class="fas fa-file-alt text-blue-600 text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-gray-900">Sillabus</h3>
-                                <p class="text-sm text-gray-500">Fan dasturi va rejasi</p>
-                            </div>
+                <div class="doc-card rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow">
+                    <div class="bg-gradient-to-br from-blue-500 to-blue-600 p-6 text-center">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-file-alt text-white text-3xl"></i>
                         </div>
-                        <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="p-6 pt-0 border-t border-gray-100">
-                            <div class="bg-blue-50 rounded-xl p-4 flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <i class="fas fa-file-pdf text-red-500 text-2xl mr-3"></i>
-                                    <div>
-                                        <p class="font-medium text-gray-900">Bojxona ishi fan sillabusi</p>
-                                        <p class="text-sm text-gray-500">PDF — 2.5 MB</p>
-                                    </div>
-                                </div>
-                                <a href="#" class="inline-flex items-center bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
-                                    <i class="fas fa-download mr-2"></i>Yuklab olish
-                                </a>
-                            </div>
-                        </div>
+                        <h3 class="text-xl font-bold text-white">Sillabus</h3>
+                        <p class="text-blue-100 text-sm mt-1">Fan dasturi va rejasi</p>
+                    </div>
+                    <div class="p-6 text-center">
+                        <p class="text-gray-600 text-sm mb-4">Bojxona ishi fanining to'liq sillabusi, mavzular rejasi va baholash mezonlari</p>
+                        <a href="https://drive.google.com/drive/folders/17F-55-NnO6lwk5e9KHgGeoqbCvDAWIz6?usp=drive_link" target="_blank" class="inline-flex items-center justify-center w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            Ko'rish / Yuklab olish
+                        </a>
                     </div>
                 </div>
 
                 <!-- Ma'ruzalar -->
-                <div class="doc-card rounded-2xl shadow-lg overflow-hidden border border-gray-100">
-                    <button class="accordion-btn w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors" onclick="toggleAccordion(this)">
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4">
-                                <i class="fas fa-book text-green-600 text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-gray-900">Ma'ruzalar</h3>
-                                <p class="text-sm text-gray-500">1–15 mavzular bo'yicha materiallar</p>
-                            </div>
+                <div class="doc-card rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow">
+                    <div class="bg-gradient-to-br from-green-500 to-green-600 p-6 text-center">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-book text-white text-3xl"></i>
                         </div>
-                        <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="p-6 pt-0 border-t border-gray-100">
-                            <div class="space-y-3">
-                                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                                    <span class="text-gray-700"><i class="fas fa-file-alt text-gray-400 mr-2"></i>1-mavzu: Bojxona ishining asoslari</span>
-                                    <a href="#" class="text-blue-600 hover:text-blue-700"><i class="fas fa-download"></i></a>
-                                </div>
-                                ...
-                            </div>
-                        </div>
+                        <h3 class="text-xl font-bold text-white">Ma'ruzalar</h3>
+                        <p class="text-green-100 text-sm mt-1">1–15 mavzular</p>
+                    </div>
+                    <div class="p-6 text-center">
+                        <p class="text-gray-600 text-sm mb-4">Barcha mavzular bo'yicha to'liq ma'ruza matnlari va taqdimotlar</p>
+                        <a href="https://drive.google.com/drive/folders/13I-IOey5NZNRn_HVvYFlOab6k0lOFNXl?usp=drive_link" target="_blank" class="inline-flex items-center justify-center w-full bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors">
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            Ko'rish / Yuklab olish
+                        </a>
                     </div>
                 </div>
 
                 <!-- Amaliy materiallar -->
-                <div class="doc-card rounded-2xl shadow-lg overflow-hidden border border-gray-100">
-                    <button class="accordion-btn w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors" onclick="toggleAccordion(this)">
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center mr-4">
-                                <i class="fas fa-tools text-yellow-600 text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-gray-900">Amaliy materiallar</h3>
-                                <p class="text-sm text-gray-500">Mashg'ulotlar, keyslar, hisoblash masalalari</p>
-                            </div>
+                <div class="doc-card rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow">
+                    <div class="bg-gradient-to-br from-orange-500 to-orange-600 p-6 text-center">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-tools text-white text-3xl"></i>
                         </div>
-                        <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="p-6 pt-0 border-t border-gray-100">
-                            <div class="grid md:grid-cols-3 gap-4">
-                                <div class="bg-yellow-50 rounded-xl p-4 text-center hover:shadow-md transition-shadow">
-                                    <i class="fas fa-clipboard-list text-yellow-600 text-3xl mb-3"></i>
-                                    <h4 class="font-semibold text-gray-900 mb-1">Amaliy mashg'ulotlar</h4>
-                                    <p class="text-sm text-gray-500 mb-3">15 ta mashg'ulot</p>
-                                    <a href="#" class="text-blue-600 text-sm hover:underline">Yuklab olish</a>
-                                </div>
-                                <div class="bg-orange-50 rounded-xl p-4 text-center hover:shadow-md transition-shadow">
-                                    <i class="fas fa-briefcase text-orange-600 text-3xl mb-3"></i>
-                                    <h4 class="font-semibold text-gray-900 mb-1">Keyslar</h4>
-                                    <p class="text-sm text-gray-500 mb-3">10 ta vaziyatli keys</p>
-                                    <a href="#" class="text-blue-600 text-sm hover:underline">Yuklab olish</a>
-                                </div>
-                                <div class="bg-red-50 rounded-xl p-4 text-center hover:shadow-md transition-shadow">
-                                    <i class="fas fa-calculator text-red-600 text-3xl mb-3"></i>
-                                    <h4 class="font-semibold text-gray-900 mb-1">Hisoblash masalalari</h4>
-                                    <p class="text-sm text-gray-500 mb-3">25 ta masala</p>
-                                    <a href="#" class="text-blue-600 text-sm hover:underline">Yuklab olish</a>
-                                </div>
-                            </div>
-                        </div>
+                        <h3 class="text-xl font-bold text-white">Amaliy materiallar</h3>
+                        <p class="text-orange-100 text-sm mt-1">Mashg'ulotlar va keyslar</p>
+                    </div>
+                    <div class="p-6 text-center">
+                        <p class="text-gray-600 text-sm mb-4">Amaliy mashg'ulotlar, vaziyatli masalalar va hisoblash topshiriqlari</p>
+                        <a href="https://drive.google.com/drive/folders/1mNoFUOyspNDyyYJebRmTxIyUL8pd0QCN?usp=drive_link" target="_blank" class="inline-flex items-center justify-center w-full bg-orange-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-orange-700 transition-colors">
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            Ko'rish / Yuklab olish
+                        </a>
                     </div>
                 </div>
 
-                <!-- Slaydlar -->
-                <div class="doc-card rounded-2xl shadow-lg overflow-hidden border border-gray-100">
-                    <button class="accordion-btn w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors" onclick="toggleAccordion(this)">
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mr-4">
-                                <i class="fas fa-presentation text-purple-600 text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-gray-900">Slaydlar</h3>
-                                <p class="text-sm text-gray-500">PowerPoint va PDF taqdimotlar</p>
-                            </div>
+                <!-- Taqdimotlar -->
+                <div class="doc-card rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow">
+                    <div class="bg-gradient-to-br from-purple-500 to-purple-600 p-6 text-center">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-desktop text-white text-3xl"></i>
                         </div>
-                        <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="p-6 pt-0 border-t border-gray-100">
-                            <div class="space-y-3">
-                                <div class="flex items-center justify-between p-4 bg-purple-50 rounded-lg">
-                                    <div class="flex items-center">
-                                        <i class="fab fa-microsoft text-orange-500 text-xl mr-3"></i>
-                                        <div>
-                                            <p class="font-medium text-gray-900">Barcha mavzular bo'yicha slaydlar</p>
-                                            <p class="text-sm text-gray-500">PowerPoint — 45 MB</p>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="inline-flex items-center bg-purple-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors">
-                                        <i class="fas fa-download mr-2"></i>Yuklab olish
-                                    </a>
-                                </div>
-                                <div class="flex items-center justify-between p-4 bg-red-50 rounded-lg">
-                                    <div class="flex items-center">
-                                        <i class="fas fa-file-pdf text-red-500 text-xl mr-3"></i>
-                                        <div>
-                                            <p class="font-medium text-gray-900">Vizual dars materiallari</p>
-                                            <p class="text-sm text-gray-500">PDF — 30 MB</p>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="inline-flex items-center bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-red-700 transition-colors">
-                                        <i class="fas fa-download mr-2"></i>Yuklab olish
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                        <h3 class="text-xl font-bold text-white">Taqdimotlar</h3>
+                        <p class="text-purple-100 text-sm mt-1">PowerPoint slaydlar</p>
+                    </div>
+                    <div class="p-6 text-center">
+                        <p class="text-gray-600 text-sm mb-4">Dars jarayonida foydalaniladigan vizual taqdimotlar va slaydlar</p>
+                        <a href="https://drive.google.com/drive/folders/13I-IOey5NZNRn_HVvYFlOab6k0lOFNXl?usp=drive_link" target="_blank" class="inline-flex items-center justify-center w-full bg-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-purple-700 transition-colors">
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            Ko'rish / Yuklab olish
+                        </a>
                     </div>
                 </div>
+
+                <!-- Video darslar -->
+                <div class="doc-card rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow sm:col-span-2 lg:col-span-2">
+                    <div class="bg-gradient-to-br from-red-500 to-red-600 p-6 text-center">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-video text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Video darslar</h3>
+                        <p class="text-red-100 text-sm mt-1">Onlayn video materiallar</p>
+                    </div>
+                    <div class="p-6 text-center">
+                        <p class="text-gray-600 text-sm mb-4">Mavzular bo'yicha yozib olingan video darslar va tushuntirishlar. Mustaqil o'rganish uchun qo'shimcha materiallar.</p>
+                        <a href="https://drive.google.com/drive/folders/1DrnEYsN1eiBe8lXLKVSdX6791VcYqzyT?usp=drive_link" target="_blank" class="inline-flex items-center justify-center bg-red-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-red-700 transition-colors">
+                            <i class="fas fa-play-circle mr-2"></i>
+                            Video darslarni ko'rish
+                        </a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -633,130 +597,425 @@
                 </p>
             </div>
 
-            <!-- Content Grid -->
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Amaliy topshiriqlar -->
-                <div class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl p-8 border border-orange-100">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center mr-4">
-                            <i class="fas fa-tasks text-white text-xl"></i>
+            <!-- Accordion Style Content -->
+            <div class="max-w-5xl mx-auto space-y-4">
+                
+                <!-- 1. Amaliy topshiriqlar -->
+                <div class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl shadow-lg overflow-hidden border border-orange-200">
+                    <button class="practice-accordion-btn w-full flex items-center justify-between p-6 text-left hover:bg-orange-100/50 transition-colors" onclick="togglePracticeAccordion(this)">
+                        <div class="flex items-center">
+                            <div class="w-14 h-14 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0 shadow-lg">
+                                <i class="fas fa-tasks text-white text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Amaliy topshiriqlar</h3>
+                                <p class="text-sm text-gray-500">10 ta amaliy topshiriq • Har bir topshiriq uchun batafsil ko'rsatmalar</p>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900">Amaliy topshiriqlar</h3>
+                        <div class="flex items-center">
+                            <span class="hidden sm:inline-block bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full mr-3">10 ta</span>
+                            <i class="fas fa-chevron-down text-orange-500 transition-transform duration-300 flex-shrink-0 text-xl"></i>
+                        </div>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-6 pt-4 border-t border-orange-200">
+                            <div class="flex items-center justify-center text-orange-500 text-sm mb-4 animate-pulse">
+                                <i class="fas fa-mouse mr-2"></i>
+                                <span>Pastga aylantiring</span>
+                                <i class="fas fa-arrow-down ml-2"></i>
+                            </div>
+                            <div class="space-y-4 pb-4">
+                                <!-- Topshiriq 1 -->
+                                <div class="bg-white rounded-xl p-5 shadow-sm border border-orange-100">
+                                    <div class="flex items-start">
+                                        <span class="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4 flex-shrink-0">1</span>
+                                        <div class="flex-1">
+                                            <h4 class="font-bold text-gray-900 mb-2">Bojxona deklaratsiyasini to'ldirish</h4>
+                                            <p class="text-gray-600 text-sm mb-3">YTT (Yagona Tovar Transport) deklaratsiyasining barcha bo'limlarini to'ldirish. Import qilinadigan tovar uchun 54 ta maydonni to'g'ri to'ldirish va zarur hujjatlarni biriktirish.</p>
+                                            <div class="flex flex-wrap gap-2">
+                                                <span class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded">Deklaratsiya shakli</span>
+                                                <span class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded">Invoys</span>
+                                                <span class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded">Packing list</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Topshiriq 2 -->
+                                <div class="bg-white rounded-xl p-5 shadow-sm border border-orange-100">
+                                    <div class="flex items-start">
+                                        <span class="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4 flex-shrink-0">2</span>
+                                        <div class="flex-1">
+                                            <h4 class="font-bold text-gray-900 mb-2">Bojxona to'lovlarini hisoblash</h4>
+                                            <p class="text-gray-600 text-sm mb-3">Berilgan tovar uchun bojxona boji, aksiz solig'i va QQS ni hisoblash. Tovar qiymati $50,000 bo'lgan avtomobil ehtiyot qismlari uchun barcha to'lovlarni aniqlash.</p>
+                                            <div class="bg-gray-50 rounded-lg p-3 text-sm">
+                                                <p class="font-medium text-gray-700">Hisoblash formulasi:</p>
+                                                <p class="text-gray-600">Bojxona boji = Bojxona qiymati × Tarif stavkasi (%)</p>
+                                                <p class="text-gray-600">QQS = (Bojxona qiymati + Boj) × 12%</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Topshiriq 3 -->
+                                <div class="bg-white rounded-xl p-5 shadow-sm border border-orange-100">
+                                    <div class="flex items-start">
+                                        <span class="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4 flex-shrink-0">3</span>
+                                        <div class="flex-1">
+                                            <h4 class="font-bold text-gray-900 mb-2">HS kodlarini aniqlash</h4>
+                                            <p class="text-gray-600 text-sm mb-3">Berilgan 10 ta tovar uchun to'g'ri TN VED (HS) kodlarini aniqlash. Misol: smartfon – 8517.12.00, paxta ip – 5205.11.00</p>
+                                            <div class="flex flex-wrap gap-2">
+                                                <span class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded">6 xonali kod</span>
+                                                <span class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded">10 xonali kod</span>
+                                                <span class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded">Klassifikatsiya</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Topshiriq 4-10 -->
+                                <div class="bg-white rounded-xl p-5 shadow-sm border border-orange-100">
+                                    <div class="flex items-start">
+                                        <span class="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4 flex-shrink-0">4</span>
+                                        <div class="flex-1">
+                                            <h4 class="font-bold text-gray-900 mb-2">Bojxona qiymatini aniqlash</h4>
+                                            <p class="text-gray-600 text-sm">CIF, FOB, EXW shartlari bo'yicha tovar qiymatini hisoblash. Transport, sug'urta va boshqa xarajatlarni qo'shib, bojxona qiymatini aniqlash.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white rounded-xl p-5 shadow-sm border border-orange-100">
+                                    <div class="flex items-start">
+                                        <span class="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4 flex-shrink-0">5</span>
+                                        <div class="flex-1">
+                                            <h4 class="font-bold text-gray-900 mb-2">Tashqi savdo shartnomasi tahlili</h4>
+                                            <p class="text-gray-600 text-sm">Xalqaro oldi-sotdi shartnomasi tuzish va tahlil qilish.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white rounded-xl p-5 shadow-sm border border-orange-100">
+                                    <div class="flex items-start">
+                                        <span class="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4 flex-shrink-0">6</span>
+                                        <div class="flex-1">
+                                            <h4 class="font-bold text-gray-900 mb-2">Sertifikat va ruxsatnomalar tahlili</h4>
+                                            <p class="text-gray-600 text-sm">Kelib chiqish sertifikati, sifat sertifikati, fitosanitariya sertifikatlarini tahlil qilish.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white rounded-xl p-5 shadow-sm border border-orange-100">
+                                    <div class="flex items-start">
+                                        <span class="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4 flex-shrink-0">7</span>
+                                        <div class="flex-1">
+                                            <h4 class="font-bold text-gray-900 mb-2">Bojxona rejimlarini qo'llash</h4>
+                                            <p class="text-gray-600 text-sm">Turli bojxona rejimlarini (import, eksport, tranzit, vaqtincha import) amaliy holatlarda qo'llash.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white rounded-xl p-5 shadow-sm border border-orange-100">
+                                    <div class="flex items-start">
+                                        <span class="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4 flex-shrink-0">8</span>
+                                        <div class="flex-1">
+                                            <h4 class="font-bold text-gray-900 mb-2">Transport hujjatlarini rasmiylashtirish</h4>
+                                            <p class="text-gray-600 text-sm">CMR, konosament, avianakladnoy transport hujjatlarini to'ldirish.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white rounded-xl p-5 shadow-sm border border-orange-100">
+                                    <div class="flex items-start">
+                                        <span class="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4 flex-shrink-0">9</span>
+                                        <div class="flex-1">
+                                            <h4 class="font-bold text-gray-900 mb-2">Tarif imtiyozlarini hisoblash</h4>
+                                            <p class="text-gray-600 text-sm">MDH davlatlari bilan erkin savdo zonasi doirasida tarif imtiyozlarini qo'llash.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white rounded-xl p-5 shadow-sm border border-orange-100">
+                                    <div class="flex items-start">
+                                        <span class="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4 flex-shrink-0">10</span>
+                                        <div class="flex-1">
+                                            <h4 class="font-bold text-gray-900 mb-2">Elektron deklaratsiyalash tizimi</h4>
+                                            <p class="text-gray-600 text-sm">"Customs.uz" elektron tizimida ishlash, elektron deklaratsiya yuborish jarayonlarini o'rganish.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <span class="w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm mr-3 flex-shrink-0">1</span>
-                            <span class="text-gray-700">Bojxona deklaratsiyasini to'ldirish</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm mr-3 flex-shrink-0">2</span>
-                            <span class="text-gray-700">Bojxona to'lovlarini hisoblash</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm mr-3 flex-shrink-0">3</span>
-                            <span class="text-gray-700">HS kodlarini aniqlash</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm mr-3 flex-shrink-0">4</span>
-                            <span class="text-gray-700">Bojxona qiymatini baholash</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm mr-3 flex-shrink-0">5</span>
-                            <span class="text-gray-700">Tashqi savдо shartnomalarini tahlil qilish</span>
-                        </li>
-                    </ul>
                 </div>
 
-                <!-- Bojxona rasmiylashtiruvi misollari -->
-                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 border border-blue-100">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center mr-4">
-                            <i class="fas fa-file-signature text-white text-xl"></i>
+                <!-- 2. Rasmiylashtirish misollari -->
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl shadow-lg overflow-hidden border border-blue-200">
+                    <button class="practice-accordion-btn w-full flex items-center justify-between p-6 text-left hover:bg-blue-100/50 transition-colors" onclick="togglePracticeAccordion(this)">
+                        <div class="flex items-center">
+                            <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0 shadow-lg">
+                                <i class="fas fa-file-signature text-white text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Rasmiylashtirish misollari</h3>
+                                <p class="text-sm text-gray-500">6 ta batafsil misollar • Hujjatlar namunalari bilan</p>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900">Rasmiylashtirish misollari</h3>
+                        <div class="flex items-center">
+                            <span class="hidden sm:inline-block bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full mr-3">6 ta</span>
+                            <i class="fas fa-chevron-down text-blue-500 transition-transform duration-300 flex-shrink-0 text-xl"></i>
+                        </div>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-6 pt-4 border-t border-blue-200">
+                            <div class="flex items-center justify-center text-blue-500 text-sm mb-4 animate-pulse">
+                                <i class="fas fa-mouse mr-2"></i>
+                                <span>Pastga aylantiring</span>
+                                <i class="fas fa-arrow-down ml-2"></i>
+                            </div>
+                            <div class="space-y-4 pb-4">
+                                <div class="bg-white rounded-xl p-5 shadow-sm border border-blue-100">
+                                    <h4 class="font-bold text-gray-900 mb-3"><i class="fas fa-ship text-blue-600 mr-2"></i>Import tovarlarini rasmiylashtirish</h4>
+                                    <div class="bg-blue-50 rounded-lg p-4">
+                                        <ol class="text-sm text-gray-700 space-y-2">
+                                            <li>1. Tashqi savdo shartnomasi tuzish</li>
+                                            <li>2. Invoys va packing list olish</li>
+                                            <li>3. Transport hujjatlarini rasmiylashtirish</li>
+                                            <li>4. Kelib chiqish sertifikatini olish</li>
+                                            <li>5. YTT deklaratsiyasini to'ldirish</li>
+                                            <li>6. Bojxona to'lovlarini amalga oshirish</li>
+                                            <li>7. Tovarni bo'shatish ruxsatini olish</li>
+                                        </ol>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white rounded-xl p-5 shadow-sm border border-blue-100">
+                                    <h4 class="font-bold text-gray-900 mb-3"><i class="fas fa-plane-departure text-green-600 mr-2"></i>Eksport hujjatlarini tayyorlash</h4>
+                                    <div class="bg-green-50 rounded-lg p-4">
+                                        <ul class="text-sm text-gray-700 space-y-1">
+                                            <li>• Eksport shartnomasi (2 nusxada)</li>
+                                            <li>• Tijorat invoysi</li>
+                                            <li>• Fitosanitariya sertifikati</li>
+                                            <li>• Kelib chiqish sertifikati (CT-1)</li>
+                                            <li>• CMR transport hujjati</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white rounded-xl p-5 shadow-sm border border-blue-100">
+                                    <h4 class="font-bold text-gray-900 mb-3"><i class="fas fa-truck text-yellow-600 mr-2"></i>Tranzit yuklar bilan ishlash</h4>
+                                    <p class="text-sm text-gray-600">TIR karneti, tranzit deklaratsiyasi, marshrutni ko'rsatuvchi xarita, bank kafolati talab etiladi. Muddat: 10 kundan oshmasligi kerak.</p>
+                                </div>
+
+                                <div class="bg-white rounded-xl p-5 shadow-sm border border-blue-100">
+                                    <h4 class="font-bold text-gray-900 mb-3"><i class="fas fa-warehouse text-purple-600 mr-2"></i>Bojxona ombori rejimi</h4>
+                                    <p class="text-sm text-gray-600">Saqlash muddati: 3 yilgacha. Afzalligi: bojxona to'lovlari kechiktiriladi, tovarni qismlarga bo'lib sotish imkoniyati.</p>
+                                </div>
+
+                                <div class="bg-white rounded-xl p-5 shadow-sm border border-blue-100">
+                                    <h4 class="font-bold text-gray-900 mb-3"><i class="fas fa-industry text-red-600 mr-2"></i>Qayta ishlash rejimi</h4>
+                                    <p class="text-sm text-gray-600">Chet el xomashyosini import qilib, qayta ishlab eksport qilish. Import bojidan ozod qilish, 12 oy ichida eksport qilish sharti.</p>
+                                </div>
+
+                                <div class="bg-white rounded-xl p-5 shadow-sm border border-blue-100">
+                                    <h4 class="font-bold text-gray-900 mb-3"><i class="fas fa-map-marked-alt text-teal-600 mr-2"></i>Erkin iqtisodiy zona (EIZ)</h4>
+                                    <p class="text-sm text-gray-600">Imtiyozlar: bojxona bojidan ozod qilish, QQS imtiyozlari, soddalashtirilgan rasmiylashtirish. EIZlar: Navoi, Angren, Jizzax, Urgut, Gijduvon.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Import tovarlarini rasmiylashtirish tartibi</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Eksport hujjatlarini tayyorlash</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Tranzit yuklar bilan ishlash</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Bojxona omborlari bilan ishlash</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Erkin iqtisodiy zonalar amaliyoti</span>
-                        </li>
-                    </ul>
                 </div>
 
-                <!-- Vaziyatli masalalar -->
-                <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 border border-green-100">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center mr-4">
-                            <i class="fas fa-puzzle-piece text-white text-xl"></i>
+                <!-- 3. Vaziyatli masalalar -->
+                <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl shadow-lg overflow-hidden border border-green-200">
+                    <button class="practice-accordion-btn w-full flex items-center justify-between p-6 text-left hover:bg-green-100/50 transition-colors" onclick="togglePracticeAccordion(this)">
+                        <div class="flex items-center">
+                            <div class="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0 shadow-lg">
+                                <i class="fas fa-puzzle-piece text-white text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Vaziyatli masalalar (Keys-stadylar)</h3>
+                                <p class="text-sm text-gray-500">5 ta real vaziyatlar • Yechim va tahlil bilan</p>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900">Vaziyatli masalalar</h3>
+                        <div class="flex items-center">
+                            <span class="hidden sm:inline-block bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full mr-3">5 ta</span>
+                            <i class="fas fa-chevron-down text-green-500 transition-transform duration-300 flex-shrink-0 text-xl"></i>
+                        </div>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-6 pt-4 border-t border-green-200">
+                            <div class="flex items-center justify-center text-green-500 text-sm mb-4 animate-pulse">
+                                <i class="fas fa-mouse mr-2"></i>
+                                <span>Pastga aylantiring</span>
+                                <i class="fas fa-arrow-down ml-2"></i>
+                            </div>
+                            <div class="space-y-4 pb-4">
+                                <div class="bg-white rounded-xl p-5 shadow-sm border border-green-100">
+                                    <span class="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">KEYS #1</span>
+                                    <h4 class="font-bold text-gray-900 mt-3 mb-2">Tovar klassifikatsiyasi bo'yicha nizo</h4>
+                                    <p class="text-sm text-gray-600 mb-3">Bojxona xodimlari tovarni 8471.30.00 (noutbuklar), import qiluvchi esa 8528.71.00 (planshetlar) deb hisoblayapti. Tarif farqi 10%.</p>
+                                    <div class="bg-blue-50 rounded-lg p-3 text-sm text-gray-700">
+                                        <strong>Yechim:</strong> Texnik hujjatlarni taqdim etish, ekspertiza o'tkazish, bojxona qo'mitasiga shikoyat.
+                                    </div>
+                                </div>
+
+                                <div class="bg-white rounded-xl p-5 shadow-sm border border-green-100">
+                                    <span class="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">KEYS #2</span>
+                                    <h4 class="font-bold text-gray-900 mt-3 mb-2">Bojxona qiymatini past ko'rsatish</h4>
+                                    <p class="text-sm text-gray-600 mb-3">Invoysdagi qiymat $20,000, bojxona xodimlari $35,000 deb baholashmoqda.</p>
+                                    <div class="bg-blue-50 rounded-lg p-3 text-sm text-gray-700">
+                                        <strong>WTO 6 ta usuli:</strong> Bitim qiymati, o'xshash tovarlar, chegirmali qiymat, hisoblangan qiymat usullari.
+                                    </div>
+                                </div>
+
+                                <div class="bg-white rounded-xl p-5 shadow-sm border border-green-100">
+                                    <span class="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">KEYS #3</span>
+                                    <h4 class="font-bold text-gray-900 mt-3 mb-2">Kontrabanda tovarlar aniqlash</h4>
+                                    <p class="text-sm text-gray-600 mb-3">Konteynerda deklaratsiya qilinmagan 500 dona smartfon topildi.</p>
+                                    <div class="bg-red-50 rounded-lg p-3 text-sm text-gray-700">
+                                        <strong>Oqibatlari:</strong> Musodara, jarima (200-300%), jinoiy javobgarlik, litsenziya bekor qilish.
+                                    </div>
+                                </div>
+
+                                <div class="bg-white rounded-xl p-5 shadow-sm border border-green-100">
+                                    <span class="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">KEYS #4</span>
+                                    <h4 class="font-bold text-gray-900 mt-3 mb-2">Kelib chiqish sertifikati muammosi</h4>
+                                    <p class="text-sm text-gray-600">CT-1 sertifikatida kamchiliklar bor. Imtiyoz berilishi, sertifikatni tuzatish imkoniyati tahlil qilinadi.</p>
+                                </div>
+
+                                <div class="bg-white rounded-xl p-5 shadow-sm border border-green-100">
+                                    <span class="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">KEYS #5</span>
+                                    <h4 class="font-bold text-gray-900 mt-3 mb-2">Bojxona auditi natijasi</h4>
+                                    <p class="text-sm text-gray-600">3 yilda $50,000 kam to'langan to'lovlar aniqlandi. Audit natijalarini ko'rib chiqish, qarzdorlikni tan olish yoki sud orqali hal qilish.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <p class="text-gray-700 mb-4">Talabalar uchun real hayotiy vaziyatlarga asoslangan masalalar:</p>
-                    <ul class="space-y-3">
-                        <li class="flex items-start">
-                            <i class="fas fa-angle-right text-green-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Bojxona nizolarini hal qilish</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-angle-right text-green-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Noqonuniy import holatlari tahlili</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-angle-right text-green-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Tarif imtiyozlaridan foydalanish</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-angle-right text-green-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Bojxona auditi jarayonlari</span>
-                        </li>
-                    </ul>
                 </div>
 
-                <!-- Mustaqil ishlar -->
-                <div class="bg-gradient-to-br from-purple-50 to-violet-50 rounded-2xl p-8 border border-purple-100">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center mr-4">
-                            <i class="fas fa-user-graduate text-white text-xl"></i>
+                <!-- 4. Mustaqil ishlar -->
+                <div class="bg-gradient-to-br from-purple-50 to-violet-50 rounded-2xl shadow-lg overflow-hidden border border-purple-200">
+                    <button class="practice-accordion-btn w-full flex items-center justify-between p-6 text-left hover:bg-purple-100/50 transition-colors" onclick="togglePracticeAccordion(this)">
+                        <div class="flex items-center">
+                            <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-violet-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0 shadow-lg">
+                                <i class="fas fa-user-graduate text-white text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Mustaqil ishlar</h3>
+                                <p class="text-sm text-gray-500">8 ta tadqiqot mavzulari • Baholash mezonlari bilan</p>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900">Mustaqil ishlar</h3>
+                        <div class="flex items-center">
+                            <span class="hidden sm:inline-block bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-full mr-3">8 ta</span>
+                            <i class="fas fa-chevron-down text-purple-500 transition-transform duration-300 flex-shrink-0 text-xl"></i>
+                        </div>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-6 pt-4 border-t border-purple-200">
+                            <div class="flex items-center justify-center text-purple-500 text-sm mb-4 animate-pulse">
+                                <i class="fas fa-mouse mr-2"></i>
+                                <span>Pastga aylantiring</span>
+                                <i class="fas fa-arrow-down ml-2"></i>
+                            </div>
+                            <div class="bg-purple-100 rounded-xl p-4 mb-6">
+                                <h4 class="font-bold text-purple-800 mb-2"><i class="fas fa-info-circle mr-2"></i>Baholash mezonlari</h4>
+                                <div class="grid grid-cols-4 gap-2 text-sm">
+                                    <div class="bg-white rounded-lg p-2 text-center">
+                                        <span class="text-lg font-bold text-purple-600">30%</span>
+                                        <p class="text-gray-600 text-xs">Nazariy</p>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-2 text-center">
+                                        <span class="text-lg font-bold text-purple-600">25%</span>
+                                        <p class="text-gray-600 text-xs">Amaliy</p>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-2 text-center">
+                                        <span class="text-lg font-bold text-purple-600">25%</span>
+                                        <p class="text-gray-600 text-xs">Statistik</p>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-2 text-center">
+                                        <span class="text-lg font-bold text-purple-600">20%</span>
+                                        <p class="text-gray-600 text-xs">Xulosalar</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="space-y-3 pb-4">
+                                <div class="bg-white rounded-xl p-4 shadow-sm border border-purple-100">
+                                    <div class="flex items-center">
+                                        <span class="w-7 h-7 bg-purple-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3">1</span>
+                                        <div class="flex-1">
+                                            <h4 class="font-bold text-gray-900 text-sm">O'zbekiston bojxona siyosatini tahlil qilish</h4>
+                                            <p class="text-xs text-gray-500">15-20 bet | 3 hafta | 10 ball</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-white rounded-xl p-4 shadow-sm border border-purple-100">
+                                    <div class="flex items-center">
+                                        <span class="w-7 h-7 bg-purple-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3">2</span>
+                                        <div class="flex-1">
+                                            <h4 class="font-bold text-gray-900 text-sm">Xorijiy davlatlar bojxona amaliyoti</h4>
+                                            <p class="text-xs text-gray-500">20-25 bet | 4 hafta | 15 ball</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-white rounded-xl p-4 shadow-sm border border-purple-100">
+                                    <div class="flex items-center">
+                                        <span class="w-7 h-7 bg-purple-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3">3</span>
+                                        <div class="flex-1">
+                                            <h4 class="font-bold text-gray-900 text-sm">Elektron bojxona tizimlari</h4>
+                                            <p class="text-xs text-gray-500">15-20 bet | 3 hafta | 10 ball</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-white rounded-xl p-4 shadow-sm border border-purple-100">
+                                    <div class="flex items-center">
+                                        <span class="w-7 h-7 bg-purple-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3">4</span>
+                                        <div class="flex-1">
+                                            <h4 class="font-bold text-gray-900 text-sm">Bojxona xizmatlari samaradorligi</h4>
+                                            <p class="text-xs text-gray-500">12-15 bet | 2 hafta | 8 ball</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-white rounded-xl p-4 shadow-sm border border-purple-100">
+                                    <div class="flex items-center">
+                                        <span class="w-7 h-7 bg-purple-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3">5</span>
+                                        <div class="flex-1">
+                                            <h4 class="font-bold text-gray-900 text-sm">WTO ga a'zolik va bojxona tariflari</h4>
+                                            <p class="text-xs text-gray-500">18-22 bet | 4 hafta | 12 ball</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-white rounded-xl p-4 shadow-sm border border-purple-100">
+                                    <div class="flex items-center">
+                                        <span class="w-7 h-7 bg-purple-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3">6</span>
+                                        <div class="flex-1">
+                                            <h4 class="font-bold text-gray-900 text-sm">Kontrabandaga qarshi kurash</h4>
+                                            <p class="text-xs text-gray-500">15-18 bet | 3 hafta | 10 ball</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-white rounded-xl p-4 shadow-sm border border-purple-100">
+                                    <div class="flex items-center">
+                                        <span class="w-7 h-7 bg-purple-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3">7</span>
+                                        <div class="flex-1">
+                                            <h4 class="font-bold text-gray-900 text-sm">Erkin savdo zonalari</h4>
+                                            <p class="text-xs text-gray-500">15-20 bet | 3 hafta | 10 ball</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-white rounded-xl p-4 shadow-sm border border-purple-100">
+                                    <div class="flex items-center">
+                                        <span class="w-7 h-7 bg-purple-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3">8</span>
+                                        <div class="flex-1">
+                                            <h4 class="font-bold text-gray-900 text-sm">Bojxonada raqamlashtirish</h4>
+                                            <p class="text-xs text-gray-500">20-25 bet | 4 hafta | 15 ball</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <p class="text-gray-700 mb-4">Talabalarning mustaqil tadqiqot ishlari uchun mavzular:
-                        <ul class="space-y-3">
-                            <li class="flex items-start">
-                                <i class="fas fa-bookmark text-purple-500 mt-1 mr-3"></i>
-                                <span class="text-gray-700">O'zbekiston bojxona siyosatini tahlil qilish</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-bookmark text-purple-500 mt-1 mr-3"></i>
-                                <span class="text-gray-700">Xorijiy davlatlar bojxona amaliyotini o'rganish</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-bookmark text-purple-500 mt-1 mr-3"></i>
-                                <span class="text-gray-700">Elektron bojxona tizimlarini tadqiq qilish</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-bookmark text-purple-500 mt-1 mr-3"></i>
-                                <span class="text-gray-700">Bojxona xizmatlari samaradorligini baholash</span>
-                            </li>
-                        </ul>
-                    </p>
                 </div>
+
             </div>
         </div>
     </section>
@@ -776,93 +1035,122 @@
             </div>
 
             <!-- Teacher Card -->
-            <div class="max-w-4xl mx-auto">
+            <div class="max-w-5xl mx-auto">
                 <div class="teacher-card rounded-3xl overflow-hidden shadow-2xl">
                     <div class="md:flex">
                         <!-- Photo Section -->
                         <div class="md:w-1/3 bg-gradient-to-br from-blue-800 to-blue-900 p-8 flex flex-col items-center justify-center">
-                            <div class="w-40 h-40 rounded-full overflow-hidden border-4 border-white/30 shadow-xl mb-6">
-                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
-                                     alt="O'qituvchi rasmi" 
-                                     class="w-full h-full object-cover">
+                            <div class="w-40 h-40 rounded-full overflow-hidden border-4 border-white/30 shadow-xl mb-6 bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center">
+                                <i class="fas fa-user-tie text-white/80 text-6xl"></i>
                             </div>
-                            <div class="flex space-x-3">
-                                <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                                <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors">
-                                    <i class="fab fa-telegram-plane"></i>
-                                </a>
-                                <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors">
-                                    <i class="fas fa-envelope"></i>
-                                </a>
+                            <h3 class="text-xl font-bold text-white text-center mb-1">Astanayev Qulmaxammat</h3>
+                            <p class="text-blue-200 text-sm text-center">Sanaevich</p>
+                            <div class="mt-4 bg-white/10 rounded-lg px-4 py-2">
+                                <p class="text-yellow-400 text-sm font-medium text-center">v.b. Dotsent</p>
                             </div>
                         </div>
 
                         <!-- Info Section -->
                         <div class="md:w-2/3 bg-white p-8">
                             <div class="mb-6">
-                                <h3 class="text-2xl font-bold text-gray-900 mb-1">Karimov Jasur Alisher o'g'li</h3>
-                                <p class="text-blue-600 font-medium">Katta o'qituvchi</p>
+                                <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full mb-2">
+                                    2023 yil 04 sentyabrdan
+                                </span>
+                                <p class="text-gray-600 text-sm">Iqtisodiyot va pedagogika universiteti «Iqtisodiyot» kafedrasi</p>
                             </div>
 
-                            <div class="space-y-4">
+                            <div class="grid sm:grid-cols-2 gap-4 mb-6">
                                 <div class="flex items-start">
-                                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                                        <i class="fas fa-graduation-cap text-blue-600"></i>
+                                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+                                        <i class="fas fa-calendar-alt text-blue-600"></i>
                                     </div>
                                     <div>
-                                        <p class="text-sm text-gray-500">Ilmiy darajasi</p>
-                                        <p class="font-medium text-gray-900">Iqtisodiyot fanlari nomzodi (PhD)</p>
+                                        <p class="text-xs text-gray-500">Tug'ilgan sanasi</p>
+                                        <p class="font-medium text-gray-900 text-sm">29.06.1965</p>
                                     </div>
                                 </div>
 
                                 <div class="flex items-start">
-                                    <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                                        <i class="fas fa-book text-green-600"></i>
+                                    <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+                                        <i class="fas fa-map-marker-alt text-green-600"></i>
                                     </div>
                                     <div>
-                                        <p class="text-sm text-gray-500">O'qitadigan fanlari</p>
-                                        <p class="font-medium text-gray-900">Bojxona ishi, Tashqi iqtisodiy faoliyat, Xalqaro savdo</p>
+                                        <p class="text-xs text-gray-500">Tug'ilgan joyi</p>
+                                        <p class="font-medium text-gray-900 text-sm">Qashqadaryo vil., Chiroqchi tuman</p>
                                     </div>
                                 </div>
 
                                 <div class="flex items-start">
-                                    <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                                        <i class="fas fa-briefcase text-yellow-600"></i>
+                                    <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+                                        <i class="fas fa-graduation-cap text-purple-600"></i>
                                     </div>
                                     <div>
-                                        <p class="text-sm text-gray-500">Ish tajriba</p>
-                                        <p class="font-medium text-gray-900">12 yillik pedagogik tajriba</p>
+                                        <p class="text-xs text-gray-500">Ilmiy darajasi</p>
+                                        <p class="font-medium text-gray-900 text-sm">Siyosiy fanlar nomzodi</p>
                                     </div>
                                 </div>
 
                                 <div class="flex items-start">
-                                    <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                                        <i class="fas fa-envelope text-purple-600"></i>
+                                    <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+                                        <i class="fas fa-user-graduate text-yellow-600"></i>
                                     </div>
                                     <div>
-                                        <p class="text-sm text-gray-500">Email</p>
-                                        <a href="mailto:j.karimov@ipu.uz" class="font-medium text-blue-600 hover:underline">j.karimov@ipu.uz</a>
-                                    </div>
-                                </div>
-
-                                <div class="flex items-start">
-                                    <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                                        <i class="fas fa-phone text-red-600"></i>
-                                    </div>
-                                    <div>
-                                        <p class="text-sm text-gray-500">Telefon</p>
-                                        <p class="font-medium text-gray-900">+998 71 123-45-67</p>
+                                        <p class="text-xs text-gray-500">Mutaxassisligi</p>
+                                        <p class="font-medium text-gray-900 text-sm">Iqtisodchi, hisobchi-moliyachi</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="mt-6 pt-6 border-t border-gray-200">
-                                <p class="text-sm text-gray-600 italic">
-                                    "Bojxona ishi fani talabalarni xalqaro savdo munosabatlarining muhim tarkibiy qismi 
-                                    bo'lgan bojxona sohasida chuqur bilim va amaliy ko'nikmalar bilan qurollantiradi."
-                                </p>
+                            <!-- Education -->
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-900 mb-3 flex items-center">
+                                    <i class="fas fa-university text-blue-600 mr-2"></i>
+                                    Ma'lumoti
+                                </h4>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex items-start">
+                                        <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs mr-2 flex-shrink-0">1985</span>
+                                        <span class="text-gray-700">Samarqand Moliya texnikumi</span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs mr-2 flex-shrink-0">1992</span>
+                                        <span class="text-gray-700">Toshkent moliya instituti</span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs mr-2 flex-shrink-0">2003</span>
+                                        <span class="text-gray-700">O'zR Davlat jamiyat qurish akademiyasi</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Work Experience -->
+                            <div>
+                                <h4 class="font-bold text-gray-900 mb-3 flex items-center">
+                                    <i class="fas fa-briefcase text-green-600 mr-2"></i>
+                                    Mehnat faoliyati (asosiy)
+                                </h4>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex items-start">
+                                        <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs mr-2 flex-shrink-0">1985-1997</span>
+                                        <span class="text-gray-700">Qashqadaryo viloyat moliya boshqarmasi</span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs mr-2 flex-shrink-0">1999-2002</span>
+                                        <span class="text-gray-700">Chiroqchi tuman hokim o'rinbosari</span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs mr-2 flex-shrink-0">2004-2010</span>
+                                        <span class="text-gray-700">Kasbi tuman hokim o'rinbosari</span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs mr-2 flex-shrink-0">2019-2023</span>
+                                        <span class="text-gray-700">Qashqadaryo KSZ Direksiyasi direktori</span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs mr-2 flex-shrink-0">2023-h.v.</span>
+                                        <span class="text-gray-700 font-medium">IPU «Iqtisodiyot» kafedrasi v.b. dotsent</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -894,23 +1182,23 @@
                         <div>
                             <label class="block text-gray-300 text-sm font-medium mb-2">Ismingiz</label>
                             <input type="text" name="name" required
-                                   class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 transition-colors[...]"
+                                   class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 transition-colors"
                                    placeholder="Ismingizni kiriting">
                         </div>
                         <div>
                             <label class="block text-gray-300 text-sm font-medium mb-2">Email</label>
                             <input type="email" name="email" required
-                                   class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 transition-colors[...]"
+                                   class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 transition-colors"
                                    placeholder="email@example.com">
                         </div>
                         <div>
                             <label class="block text-gray-300 text-sm font-medium mb-2">Xabar</label>
                             <textarea name="message" rows="4" required
-                                      class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-col[...]"
+                                      class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 transition-colors resize-none"
                                       placeholder="Xabaringizni yozing..."></textarea>
                         </div>
                         <button type="submit"
-                                class="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-blue-700 transition-all flex items-c[...]"
+                                class="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-blue-700 transition-all flex items-center justify-center">
                             <i class="fas fa-paper-plane mr-2"></i>
                             Yuborish
                         </button>
@@ -920,10 +1208,9 @@
 
                 <!-- Contact Info -->
                 <div class="space-y-6">
-                    <!-- University Info -->
                     <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
                         <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center mr-4">
+                            <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
                                 <i class="fas fa-university text-white text-xl"></i>
                             </div>
                             <div>
@@ -934,23 +1221,167 @@
                         <p class="text-gray-300">Iqtisodiyot va Pedagogika Universiteti</p>
                     </div>
 
-                    <!-- Subject Info -->
                     <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
                         <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center mr-4">
+                            <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
                                 <i class="fas fa-book-open text-white text-xl"></i>
                             </div>
                             <div>
-                                <h4 class="text-lg font-bold text-white">Fan</h4>
-                                <p class="text-gray-400 text-sm">Bojxona ishi</p>
+                                <h4 class="text-lg font-bold text-white">Fan va Kafedra</h4>
+                                <p class="text-gray-400 text-sm">O'quv yo'nalishi</p>
                             </div>
                         </div>
-                        <p class="text-gray-300">Talabalar uchun alohida masalalar va materiallar</p>
+                        <p class="text-gray-300">Bojxona ishi • «Iqtisodiyot» kafedrasi</p>
+                    </div>
+
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-yellow-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-chalkboard-teacher text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-white">O'qituvchi</h4>
+                                <p class="text-gray-400 text-sm">Fan o'qituvchisi</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">Astanayev Qulmaxammat Sanaevich</p>
+                        <p class="text-gray-400 text-sm">v.b. Dotsent, Siyosiy fanlar nomzodi</p>
+                    </div>
+
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-white">Manzil</h4>
+                                <p class="text-gray-400 text-sm">Universitet joylashuvi</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">Qashqadaryo viloyati, Qarshi shahri</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    </body>
-    </html>
+    <!-- Footer -->
+    <footer class="bg-slate-900 py-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+                        <i class="fas fa-university text-white"></i>
+                    </div>
+                    <div>
+                        <p class="text-white font-semibold">Bojxona Ishi</p>
+                        <p class="text-gray-500 text-sm">Iqtisodiyot va Pedagogika Universiteti</p>
+                    </div>
+                </div>
+                <div class="text-center md:text-right">
+                    <p class="text-gray-500 text-sm">© 2024 Barcha huquqlar himoyalangan</p>
+                    <p class="text-gray-600 text-xs mt-1">O'quv fani uchun maxsus ishlab chiqilgan</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-nav').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Active nav link on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Accordion functionality for practice section
+        function togglePracticeAccordion(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('.fa-chevron-down');
+            
+            // Close all other practice accordions
+            document.querySelectorAll('.practice-accordion-btn').forEach(btn => {
+                if (btn !== button) {
+                    const otherContent = btn.nextElementSibling;
+                    const otherIcon = btn.querySelector('.fa-chevron-down');
+                    if (otherContent) otherContent.classList.remove('active');
+                    if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+                }
+            });
+
+            // Toggle current accordion
+            content.classList.toggle('active');
+            icon.style.transform = content.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formMessage = document.getElementById('formMessage');
+            formMessage.classList.remove('hidden');
+            formMessage.classList.add('bg-green-500/20', 'text-green-300', 'border', 'border-green-500/30');
+            formMessage.innerHTML = '<i class="fas fa-check-circle mr-2"></i>Xabaringiz muvaffaqiyatli yuborildi!';
+            this.reset();
+            
+            setTimeout(() => {
+                formMessage.classList.add('hidden');
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
