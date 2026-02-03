@@ -1,730 +1,1161 @@
 <!DOCTYPE html>
-<html lang="uz" class="scroll-smooth">
+<html lang="uz">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moliyaviy Biznes Reja - Iqtisodiyot va pedagogika universiteti</title>
+    <title>Bojxona Ishi - Iqtisodiyot va Pedagogika Universiteti</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
             font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
         }
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
+
+        html {
+            scroll-behavior: smooth;
         }
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-        }
+
         .hero-bg {
-            background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.7)), url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'); /* Finance/Charts background */
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.95) 0%, rgba(26, 83, 92, 0.9) 100%),
+                        url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
-        .section-padding {
-            padding-top: 100px;
-            padding-bottom: 100px;
+
+        .navbar-scrolled {
+            background: rgba(15, 52, 96, 0.98) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
         }
-        .nav-item.active {
-            color: #059669; /* emerald-600 */
+
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .accordion-content.active {
+            max-height: 1000px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #0f3460, #1a535c);
+            margin-top: 15px;
+            border-radius: 2px;
+        }
+
+        .nav-link {
             position: relative;
         }
-        .nav-item.active::after {
+
+        .nav-link::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: -2px;
             left: 0;
-            width: 100%;
+            width: 0;
             height: 2px;
-            background-color: #059669;
+            background: #d4af37;
+            transition: width 0.3s ease;
         }
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
         }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+
+        .gradient-border {
+            border-image: linear-gradient(90deg, #0f3460, #1a535c, #4ecdc4) 1;
         }
-        ::-webkit-scrollbar {
-            width: 8px;
+
+        .doc-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
         }
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #94a3b8;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #64748b;
+
+        .teacher-card {
+            background: linear-gradient(145deg, #0f3460 0%, #1a535c 100%);
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-700 antialiased">
-
-    <!-- Header & Navigation Fixed -->
-    <header class="fixed top-0 left-0 w-full z-50 glass-nav shadow-md transition-all duration-300">
-        <!-- Top Info Bar -->
-        <div class="bg-emerald-900 text-emerald-100 text-xs py-2 border-b border-emerald-800">
-            <div class="container mx-auto px-4 flex justify-between items-center">
-                <div class="flex items-center space-x-4">
-                    <span><i class="mr-1">🏛️</i> Iqtisodiyot va pedagogika universiteti</span>
-                    <span class="hidden md:inline">|</span>
-                    <span class="hidden md:inline">📈 Moliyaviy biznes reja fani</span>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <a href="mailto:finance@ipu.uz" class="hover:text-white transition">finance@ipu.uz</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Main Nav -->
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center h-20">
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-transparent transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
                 <!-- Logo -->
-                <a href="#home" class="flex items-center space-x-3 group">
-                    <div class="w-10 h-10 bg-emerald-600 text-white rounded-lg flex items-center justify-center shadow-lg transform group-hover:rotate-12 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                        </svg>
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 lg:w-12 lg:h-12 bg-white rounded-lg flex items-center justify-center shadow-lg">
+                        <i class="fas fa-university text-blue-900 text-lg lg:text-xl"></i>
                     </div>
-                    <div class="leading-tight">
-                        <h1 class="text-lg font-bold text-slate-800 uppercase tracking-tight">Moliyaviy Reja</h1>
-                        <p class="text-[10px] text-emerald-600 font-bold uppercase tracking-widest">O'quv portali</p>
+                    <div class="hidden sm:block">
+                        <h1 class="text-white font-bold text-sm lg:text-base">BOJXONA ISHI</h1>
+                        <p class="text-blue-200 text-xs">IPU O'quv fani</p>
                     </div>
-                </a>
+                </div>
 
                 <!-- Desktop Menu -->
-                <nav class="hidden lg:block">
-                    <ul class="flex space-x-6 text-sm font-semibold text-slate-600">
-                        <li><a href="#home" class="nav-item hover:text-emerald-600 transition py-2">Bosh sahifa</a></li>
-                        <li><a href="#about" class="nav-item hover:text-emerald-600 transition py-2">Fan haqida</a></li>
-                        <li><a href="#structure" class="nav-item hover:text-emerald-600 transition py-2">Tuzilma</a></li>
-                        <li><a href="#docs" class="nav-item hover:text-emerald-600 transition py-2">Hujjatlar</a></li>
-                        <li><a href="#practice" class="nav-item hover:text-emerald-600 transition py-2">Amaliyot</a></li>
-                        <li><a href="#teacher" class="nav-item hover:text-emerald-600 transition py-2">O‘qituvchi</a></li>
-                        <li><a href="#contact" class="nav-item bg-emerald-600 text-white px-5 py-2.5 rounded-full hover:bg-emerald-700 transition shadow-md hover:shadow-lg">Aloqa</a></li>
-                    </ul>
-                </nav>
+                <div class="hidden lg:flex items-center space-x-6">
+                    <a href="#home" class="nav-link text-white text-sm font-medium hover:text-yellow-400 transition-colors">Bosh sahifa</a>
+                    <a href="#about" class="nav-link text-white text-sm font-medium hover:text-yellow-400 transition-colors">Fan haqida</a>
+                    <a href="#system" class="nav-link text-white text-sm font-medium hover:text-yellow-400 transition-colors">Bojxona tizimi</a>
+                    <a href="#documents" class="nav-link text-white text-sm font-medium hover:text-yellow-400 transition-colors">Fan hujjatlari</a>
+                    <a href="#practice" class="nav-link text-white text-sm font-medium hover:text-yellow-400 transition-colors">Amaliy mashg'ulotlar</a>
+                    <a href="#teacher" class="nav-link text-white text-sm font-medium hover:text-yellow-400 transition-colors">O'qituvchi</a>
+                    <a href="#contact" class="nav-link text-white text-sm font-medium hover:text-yellow-400 transition-colors">Aloqa</a>
+                </div>
 
                 <!-- Mobile Menu Button -->
-                <button class="lg:hidden text-slate-700 focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                <button id="menuBtn" class="lg:hidden text-white p-2">
+                    <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
-        </div>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-100 absolute w-full left-0 shadow-xl">
-            <ul class="flex flex-col p-4 space-y-2 font-medium">
-                <li><a href="#home" class="block px-4 py-2 rounded hover:bg-emerald-50 text-slate-700">Bosh sahifa</a></li>
-                <li><a href="#about" class="block px-4 py-2 rounded hover:bg-emerald-50 text-slate-700">Fan haqida</a></li>
-                <li><a href="#structure" class="block px-4 py-2 rounded hover:bg-emerald-50 text-slate-700">Biznes reja tuzilmasi</a></li>
-                <li><a href="#docs" class="block px-4 py-2 rounded hover:bg-emerald-50 text-slate-700">Hujjatlar</a></li>
-                <li><a href="#practice" class="block px-4 py-2 rounded hover:bg-emerald-50 text-slate-700">Amaliyot</a></li>
-                <li><a href="#teacher" class="block px-4 py-2 rounded hover:bg-emerald-50 text-slate-700">O‘qituvchi</a></li>
-                <li><a href="#contact" class="block px-4 py-2 rounded bg-emerald-600 text-white text-center mt-2">Aloqa</a></li>
-            </ul>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main>
-
-        <!-- 1. Bosh sahifa (Hero) -->
-        <section id="home" class="relative h-screen flex items-center hero-bg text-white">
-            <div class="container mx-auto px-4 relative z-10 pt-20">
-                <div class="max-w-3xl reveal active">
-                    <div class="inline-flex items-center bg-emerald-600/30 backdrop-blur-sm border border-emerald-400/30 rounded-full px-4 py-1.5 mb-6">
-                        <span class="w-2 h-2 rounded-full bg-emerald-400 mr-2 animate-pulse"></span>
-                        <span class="text-sm font-semibold tracking-wide uppercase">2024-2025 O'quv yili</span>
-                    </div>
-                    <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight tracking-tight">
-                        MOLIYAVIY <br> BIZNES REJA
-                    </h1>
-                    <p class="text-xl md:text-2xl text-emerald-100 mb-4 font-light border-l-4 border-emerald-500 pl-4">
-                        Iqtisodiyot va pedagogika universitetida <br> o‘qitiladigan fundamental fan.
-                    </p>
-                    <p class="text-lg text-slate-300 mb-10 max-w-2xl leading-relaxed">
-                        Biznes g‘oyalarni moliyaviy asoslash, investitsion jozibadorlikni baholash va samarali byudjetlashtirish ko‘nikmalarini shakllantiring.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#about" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:shadow-emerald-500/30 transition transform hover:-translate-y-1 text-center">
-                            Fanni O'rganish
-                        </a>
-                        <a href="#docs" class="bg-white/10 backdrop-blur-md hover:bg-white/20 text-white border border-white/30 font-bold py-4 px-8 rounded-lg transition transform hover:-translate-y-1 text-center">
-                            O'quv Dasturi
-                        </a>
-                    </div>
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden lg:hidden bg-blue-900/95 rounded-lg mt-2 p-4 backdrop-blur-sm">
+                <div class="flex flex-col space-y-3">
+                    <a href="#home" class="mobile-nav text-white py-2 px-4 rounded hover:bg-blue-800 transition-colors">Bosh sahifa</a>
+                    <a href="#about" class="mobile-nav text-white py-2 px-4 rounded hover:bg-blue-800 transition-colors">Fan haqida</a>
+                    <a href="#system" class="mobile-nav text-white py-2 px-4 rounded hover:bg-blue-800 transition-colors">Bojxona tizimi</a>
+                    <a href="#documents" class="mobile-nav text-white py-2 px-4 rounded hover:bg-blue-800 transition-colors">Fan hujjatlari</a>
+                    <a href="#practice" class="mobile-nav text-white py-2 px-4 rounded hover:bg-blue-800 transition-colors">Amaliy mashg'ulotlar</a>
+                    <a href="#teacher" class="mobile-nav text-white py-2 px-4 rounded hover:bg-blue-800 transition-colors">O'qituvchi</a>
+                    <a href="#contact" class="mobile-nav text-white py-2 px-4 rounded hover:bg-blue-800 transition-colors">Aloqa</a>
                 </div>
             </div>
+        </div>
+    </nav>
+
+    <!-- 1. HERO SECTION -->
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <!-- University Badge -->
+            <div class="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-8 border border-white/20">
+                <i class="fas fa-graduation-cap text-yellow-400 mr-2"></i>
+                <span class="text-white text-sm font-medium">Iqtisodiyot va Pedagogika Universiteti</span>
+            </div>
+
+            <!-- Main Title -->
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6">
+                BOJXONA ISHI
+            </h1>
             
-            <!-- Scroll Down Indicator -->
-            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-                <a href="#about" class="flex flex-col items-center text-slate-400 hover:text-white transition">
-                    <span class="text-xs uppercase tracking-widest mb-2">Pastga</span>
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+            <p class="text-xl sm:text-2xl text-blue-200 mb-8 font-light">
+                Iqtisodiyot va pedagogika universitetida o'qitiladigan fan
+            </p>
+
+            <div class="max-w-3xl mx-auto">
+                <p class="text-lg text-gray-300 leading-relaxed mb-10">
+                    Bojxona ishi fani tashqi iqtisodiy faoliyat, bojxona nazorati, bojxona to'lovlari va 
+                    rasmiylashtirish jarayonlarining nazariy hamda amaliy asoslarini o'rganadi. Fan 
+                    xalqaro savdo munosabatlarini tartibga solish va davlat manfaatlarini himoya qilish 
+                    bo'yicha bilim va ko'nikmalarni shakllantiradi.
+                </p>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+                <a href="#documents" class="inline-flex items-center justify-center bg-gradient-to-r from-yellow-500 to-yellow-600 text-blue-900 px-8 py-4 rounded-lg font-semibold hover:from-yellow-400 hover:to-yellow-500 transition-all shadow-lg">
+                    <i class="fas fa-book-open mr-2"></i>
+                    O'quv materiallar
+                </a>
+                <a href="#about" class="inline-flex items-center justify-center bg-white/10 backdrop-blur-sm text-white border border-white/30 px-8 py-4 rounded-lg font-semibold hover:bg-white/20 transition-all">
+                    <i class="fas fa-info-circle mr-2"></i>
+                    Batafsil ma'lumot
                 </a>
             </div>
-        </section>
 
-        <!-- 2. Fan haqida -->
-        <section id="about" class="section-padding bg-white relative overflow-hidden reveal">
-            <!-- Decorative Elements -->
-            <div class="absolute top-0 left-0 w-1/3 h-full bg-slate-50 skew-x-12 transform -translate-x-20 -z-0"></div>
-
-            <div class="container mx-auto px-4 relative z-10">
-                <div class="flex flex-col lg:flex-row items-center gap-16">
-                    <!-- Text Side -->
-                    <div class="lg:w-1/2">
-                        <span class="text-emerald-600 font-bold tracking-wider uppercase text-sm mb-2 block">Umumiy Ma'lumot</span>
-                        <h2 class="text-4xl font-extrabold text-slate-900 mb-6 leading-tight">Fan Maqsadi va <span class="text-emerald-600">Vazifalari</span></h2>
-                        <p class="text-lg text-slate-600 mb-6 leading-relaxed">
-                            "Moliyaviy biznes reja" fani talabalarga korxona faoliyatini strategik rejalashtirish, moliyaviy resurslarni boshqarish va investitsiya loyihalarini tahlil qilish bo‘yicha chuqur bilim berishga qaratilgan.
-                        </p>
-                        
-                        <div class="space-y-6">
-                            <div class="flex">
-                                <div class="flex-shrink-0 mr-4">
-                                    <div class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                                    </div>
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-bold text-slate-800 mb-2">O'quv Natijalari</h4>
-                                    <p class="text-slate-600">Biznes rejalarni mustaqil tuza olish, moliyaviy xatarlarni baholash va foydalilik ko'rsatkichlarini hisoblash.</p>
-                                </div>
-                            </div>
-                            <div class="flex">
-                                <div class="flex-shrink-0 mr-4">
-                                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                                    </div>
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-bold text-slate-800 mb-2">Iqtisodiy Ahamiyati</h4>
-                                    <p class="text-slate-600">Raqobatbardosh biznes modellarini yaratish va investitsiyalarni jalb qilishda asosiy vosita.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Image Side -->
-                    <div class="lg:w-1/2 relative">
-                        <div class="relative rounded-2xl overflow-hidden shadow-2xl">
-                            <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Financial Planning" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                            <div class="absolute bottom-6 left-6 text-white">
-                                <p class="text-sm font-bold uppercase tracking-wider text-emerald-400 mb-1">Strategik Tahlil</p>
-                                <h3 class="text-2xl font-bold">Moliya va Rejalashtirish</h3>
-                            </div>
-                        </div>
-                        <!-- Floating Stats Card -->
-                        <div class="absolute -top-10 -right-5 bg-white p-6 rounded-xl shadow-xl border border-slate-100 hidden md:block w-64 animate-bounce" style="animation-duration: 3s;">
-                            <div class="flex justify-between items-center mb-2">
-                                <span class="text-slate-500 text-sm">Rentabellik (ROI)</span>
-                                <span class="font-bold text-green-600">+24%</span>
-                            </div>
-                            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                                <div class="bg-green-500 h-full w-4/5"></div>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                    <div class="text-3xl font-bold text-yellow-400 mb-1">15</div>
+                    <div class="text-sm text-gray-300">Ma'ruzalar</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                    <div class="text-3xl font-bold text-yellow-400 mb-1">30</div>
+                    <div class="text-sm text-gray-300">Amaliy mashg'ulotlar</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                    <div class="text-3xl font-bold text-yellow-400 mb-1">4</div>
+                    <div class="text-sm text-gray-300">Kredit</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                    <div class="text-3xl font-bold text-yellow-400 mb-1">120</div>
+                    <div class="text-sm text-gray-300">Soatlar</div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- 3. Biznes Reja Tuzilmasi -->
-        <section id="structure" class="section-padding bg-slate-50 relative reveal">
-            <div class="container mx-auto px-4">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <span class="text-emerald-600 font-bold tracking-wider uppercase text-sm">Arxitektura</span>
-                    <h2 class="text-4xl font-extrabold text-slate-900 mt-2 mb-4">Biznes Reja Tuzilmasi</h2>
-                    <p class="text-slate-600 text-lg">Muvaffaqiyatli loyihaning asosi — to‘g‘ri tuzilgan moliyaviy modeldir. Quyidagi bo'limlar biznes rejaning yuragi hisoblanadi.</p>
-                </div>
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 scroll-indicator">
+            <a href="#about" class="flex flex-col items-center text-white/70 hover:text-white transition-colors">
+                <span class="text-sm mb-2">Pastga aylantiring</span>
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Card 1 -->
-                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 border border-slate-100">
-                        <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center text-white mb-6 shadow-blue-500/30 shadow-lg">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 3.666V3m6 18c0 1.51-2.512 2.308-4.128 2.818C15.86 24.166 14.865 25 14 25h-4c-.866 0-1.861-.835-2.872-1.182C5.512 23.308 3 22.51 3 21m18 0v-5.666M3 21v-5.666m18 0V11.05c0-1.51-2.512-2.308-4.128-2.818C15.86 7.834 14.865 7 14 7h-4c-.866 0-1.861.834-2.872 1.182C5.512 8.742 3 9.54 3 11.05v4.284"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3">Daromad va Xarajatlar</h3>
-                        <p class="text-slate-600 leading-relaxed mb-4">Mahsulot sotishdan tushadigan daromadlar prognozi va o‘zgarmas hamda o‘zgaruvchan xarajatlar hisobi.</p>
-                        <ul class="text-sm text-slate-500 space-y-2">
-                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>Sotuv rejasi</li>
-                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>OPEX (Operatsion xarajat)</li>
-                        </ul>
-                    </div>
-
-                    <!-- Card 2 -->
-                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 border border-slate-100">
-                        <div class="w-14 h-14 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-xl flex items-center justify-center text-white mb-6 shadow-emerald-500/30 shadow-lg">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3">Cash Flow (Pul Oqimi)</h3>
-                        <p class="text-slate-600 leading-relaxed mb-4">Korxonaga kirib kelayotgan va chiqib ketayotgan naqd pul mablag‘larining harakatini rejalashtirish.</p>
-                         <ul class="text-sm text-slate-500 space-y-2">
-                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-2"></span>Likvidlik nazorati</li>
-                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-2"></span>Kassa uzilishi (Cash gap)</li>
-                        </ul>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 border border-slate-100">
-                        <div class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-indigo-700 rounded-xl flex items-center justify-center text-white mb-6 shadow-indigo-500/30 shadow-lg">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3">Samaradorlik</h3>
-                        <p class="text-slate-600 leading-relaxed mb-4">Loyihaning o‘zini oqlash muddati (Payback Period), sof keltirilgan qiymat (NPV) va rentabellik.</p>
-                         <ul class="text-sm text-slate-500 space-y-2">
-                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-indigo-500 rounded-full mr-2"></span>NPV & IRR</li>
-                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-indigo-500 rounded-full mr-2"></span>Break-even point</li>
-                        </ul>
-                    </div>
-                </div>
+    <!-- 2. FAN HAQIDA -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <span class="inline-block bg-blue-100 text-blue-800 text-sm font-semibold px-4 py-1 rounded-full mb-4">
+                    O'quv fani
+                </span>
+                <h2 class="section-title text-4xl font-bold text-gray-900 flex justify-center">Fan haqida</h2>
+                <p class="text-gray-600 mt-6 max-w-2xl mx-auto">
+                    "Bojxona ishi" fani talabalarni bojxona sohasidagi nazariy bilimlar va amaliy 
+                    ko'nikmalar bilan qurollantiradi.
+                </p>
             </div>
-        </section>
 
-        <!-- 4. Fan Hujjatlari -->
-        <section id="docs" class="section-padding bg-white reveal">
-            <div class="container mx-auto px-4">
-                <div class="flex flex-col md:flex-row justify-between items-end mb-12">
-                    <div class="mb-4 md:mb-0">
-                        <span class="text-emerald-600 font-bold tracking-wider uppercase text-sm">Resurslar</span>
-                        <h2 class="text-4xl font-extrabold text-slate-900 mt-2">O'quv Materiallari</h2>
+            <!-- Content Grid -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Fan maqsadi -->
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 card-hover transition-all duration-300">
+                    <div class="w-14 h-14 bg-blue-600 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-bullseye text-white text-2xl"></i>
                     </div>
-                    <button class="text-emerald-600 font-bold hover:text-emerald-800 transition flex items-center">
-                        Barcha fayllarni yuklash
-                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                    </button>
-                </div>
-
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- 4.1 Sillabus -->
-                    <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:border-emerald-400 hover:shadow-lg transition duration-300 group">
-                        <div class="w-12 h-12 bg-red-100 text-red-600 rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition">📄</div>
-                        <h3 class="font-bold text-lg text-slate-900 mb-2">Sillabus</h3>
-                        <p class="text-slate-500 text-sm mb-4">Fan dasturi, baholash mezonlari va mavzular rejasi.</p>
-                        <a href="#" class="inline-flex items-center text-emerald-600 font-semibold text-sm hover:underline">
-                            Yuklab olish (PDF)
-                        </a>
-                    </div>
-
-                    <!-- 4.2 Ma'ruzalar -->
-                    <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:border-emerald-400 hover:shadow-lg transition duration-300 group">
-                        <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition">📚</div>
-                        <h3 class="font-bold text-lg text-slate-900 mb-2">Ma'ruzalar Matni</h3>
-                        <p class="text-slate-500 text-sm mb-4">Moliyaviy rejalashtirish nazariyasi bo'yicha to'liq kurs.</p>
-                        <a href="#" class="inline-flex items-center text-emerald-600 font-semibold text-sm hover:underline">
-                            Kursni ochish
-                        </a>
-                    </div>
-
-                    <!-- 4.3 Amaliy -->
-                    <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:border-emerald-400 hover:shadow-lg transition duration-300 group">
-                        <div class="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition">🧮</div>
-                        <h3 class="font-bold text-lg text-slate-900 mb-2">Amaliy Materiallar</h3>
-                        <p class="text-slate-500 text-sm mb-4">Excel jadvallar, hisoblash formulalari va misollar.</p>
-                        <a href="#" class="inline-flex items-center text-emerald-600 font-semibold text-sm hover:underline">
-                            Materiallarni ko'rish
-                        </a>
-                    </div>
-
-                    <!-- 4.4 Slaydlar -->
-                    <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:border-emerald-400 hover:shadow-lg transition duration-300 group">
-                        <div class="w-12 h-12 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition">📊</div>
-                        <h3 class="font-bold text-lg text-slate-900 mb-2">Taqdimot Slaydlari</h3>
-                        <p class="text-slate-500 text-sm mb-4">Vizual grafiklar va diagrammalar bilan boyitilgan slaydlar.</p>
-                        <a href="#" class="inline-flex items-center text-emerald-600 font-semibold text-sm hover:underline">
-                            Barchasini yuklash
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. Amaliy Mashg'ulotlar -->
-        <section id="practice" class="section-padding bg-slate-900 text-white relative reveal">
-            <!-- Background Pattern -->
-            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#4b5563 1px, transparent 1px); background-size: 20px 20px;"></div>
-            
-            <div class="container mx-auto px-4 relative z-10">
-                <div class="text-center mb-16">
-                    <span class="text-emerald-400 font-bold tracking-wider uppercase text-sm">Case Studies</span>
-                    <h2 class="text-4xl font-extrabold mt-2">Amaliy Mashg'ulotlar</h2>
-                    <p class="text-slate-400 mt-4 max-w-2xl mx-auto">Biznes reja parametrlarini hisoblash va tahlil qilish.</p>
-                </div>
-
-                <div class="grid lg:grid-cols-2 gap-10">
-                    <!-- Case Studies -->
-                    <div class="space-y-6">
-                        <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 hover:border-emerald-500 transition">
-                            <div class="flex items-start justify-between mb-4">
-                                <h3 class="font-bold text-xl text-emerald-300">1-Vazifa: Zararsizlik nuqtasi (Break-even)</h3>
-                                <span class="bg-emerald-900 text-emerald-200 text-xs px-2 py-1 rounded">Hisoblash</span>
-                            </div>
-                            <p class="text-slate-300 text-sm mb-4 leading-relaxed">
-                                Korxonaning doimiy xarajatlari 10,000$. Mahsulot narxi 50$. Bir birlik mahsulot uchun o'zgaruvchan xarajat 30$. Zararsizlik nuqtasini (dona) toping.
-                            </p>
-                            <button onclick="toggleAnswer('ans1')" class="text-emerald-400 font-bold text-sm hover:text-emerald-300 flex items-center">
-                                Javobni ko'rsatish
-                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                            </button>
-                            <div id="ans1" class="hidden mt-4 p-4 bg-slate-900/50 rounded border border-slate-700 text-emerald-300 font-mono">
-                                Formul: FC / (P - VC)<br>
-                                10,000 / (50 - 30) = 500 dona
-                            </div>
-                        </div>
-
-                        <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 hover:border-blue-500 transition">
-                            <div class="flex items-start justify-between mb-4">
-                                <h3 class="font-bold text-xl text-blue-300">2-Vazifa: Sof Foyda</h3>
-                                <span class="bg-blue-900 text-blue-200 text-xs px-2 py-1 rounded">Moliya</span>
-                            </div>
-                            <p class="text-slate-300 text-sm mb-4 leading-relaxed">
-                                Tushum: 100,000 so'm. Tannarx: 40,000 so'm. Operatsion xarajatlar: 20,000 so'm. Foyda solig'i: 15%. Sof foydani hisoblang.
-                            </p>
-                            <button onclick="toggleAnswer('ans2')" class="text-emerald-400 font-bold text-sm hover:text-emerald-300 flex items-center">
-                                Javobni ko'rsatish
-                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                            </button>
-                            <div id="ans2" class="hidden mt-4 p-4 bg-slate-900/50 rounded border border-slate-700 text-emerald-300 font-mono">
-                                Operatsion Foyda = 100k - 40k - 20k = 40,000<br>
-                                Soliq = 40,000 * 15% = 6,000<br>
-                                Sof Foyda = 40,000 - 6,000 = 34,000 so'm
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Quiz Section -->
-                    <div class="bg-gradient-to-br from-emerald-900 to-slate-900 rounded-2xl p-8 shadow-2xl border border-emerald-800">
-                        <div class="flex items-center mb-6">
-                            <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-bold mr-4">?</div>
-                            <div>
-                                <h3 class="text-2xl font-bold">Bilimni sinash</h3>
-                                <p class="text-slate-400 text-sm">Mini-test (3 ta savol)</p>
-                            </div>
-                        </div>
-                        
-                        <div id="quiz-container">
-                            <div class="space-y-4">
-                                <p class="text-emerald-200 italic text-center py-8">Moliyaviy savodxonligingizni tekshirib ko'ring.</p>
-                                <button onclick="startQuiz()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-xl shadow-lg transition transform hover:scale-105">Testni Boshlash</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. Fan O'qituvchisi -->
-        <section id="teacher" class="section-padding bg-white reveal">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16">
-                    <span class="text-emerald-600 font-bold tracking-wider uppercase text-sm">Mentor</span>
-                    <h2 class="text-4xl font-extrabold text-slate-900 mt-2">Fan O'qituvchisi</h2>
-                </div>
-
-                <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row border border-slate-100">
-                    <!-- Photo Side -->
-                    <div class="md:w-2/5 relative">
-                        <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Professor" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-emerald-900/80 to-transparent md:bg-gradient-to-r"></div>
-                        <div class="absolute bottom-4 left-4 text-white md:hidden">
-                            <p class="font-bold text-lg">Sadullayev A.B.</p>
-                        </div>
-                    </div>
-
-                    <!-- Info Side -->
-                    <div class="md:w-3/5 p-10 flex flex-col justify-center">
-                        <div class="flex justify-between items-start mb-6">
-                            <div>
-                                <h3 class="text-3xl font-bold text-slate-900">Sadullayev Anvar Botir o'g'li</h3>
-                                <p class="text-emerald-600 font-medium text-lg mt-1">Iqtisodiyot fanlari nomzodi, Dotsent</p>
-                            </div>
-                        </div>
-
-                        <p class="text-slate-600 mb-8 leading-relaxed">
-                            Moliya va bank ishi yo'nalishida 12 yillik tajribaga ega. "Biznesni rejalashtirish" va "Korporativ moliya" bo'yicha ilmiy ishlar muallifi.
-                        </p>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                            <div class="flex items-center p-3 bg-slate-50 rounded-lg">
-                                <span class="text-xl mr-3">🎓</span>
-                                <div>
-                                    <span class="block text-xs text-slate-500 uppercase">Daraja</span>
-                                    <span class="font-bold text-slate-800">PhD</span>
-                                </div>
-                            </div>
-                            <div class="flex items-center p-3 bg-slate-50 rounded-lg">
-                                <span class="text-xl mr-3">🏫</span>
-                                <div>
-                                    <span class="block text-xs text-slate-500 uppercase">Kafedra</span>
-                                    <span class="font-bold text-slate-800">Moliya</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex space-x-4">
-                            <a href="mailto:teacher@ipu.uz" class="flex-1 bg-emerald-600 text-white text-center py-3 rounded-lg font-bold hover:bg-emerald-700 transition shadow-lg shadow-emerald-500/30">
-                                Email Yozish
-                            </a>
-                            <a href="#contact" class="flex-1 border border-slate-300 text-slate-700 text-center py-3 rounded-lg font-bold hover:bg-slate-50 transition">
-                                Qabul vaqtlari
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 7. Aloqa -->
-        <section id="contact" class="section-padding bg-slate-50 relative reveal">
-            <div class="container mx-auto px-4 max-w-5xl">
-                <div class="text-center mb-16">
-                    <span class="text-emerald-600 font-bold tracking-wider uppercase text-sm">Bog'lanish</span>
-                    <h2 class="text-4xl font-extrabold text-slate-900 mt-2">Aloqa va Manzil</h2>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-0 rounded-3xl overflow-hidden shadow-2xl bg-white">
-                    <!-- Info Panel -->
-                    <div class="bg-emerald-900 text-white p-10 flex flex-col justify-between relative overflow-hidden">
-                        <!-- Decor -->
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-800 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-                        <div class="absolute -bottom-8 -left-8 w-32 h-32 bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-
-                        <div class="relative z-10">
-                            <h3 class="text-2xl font-bold mb-6">Aloqa Ma'lumotlari</h3>
-                            <div class="space-y-6">
-                                <div class="flex items-start">
-                                    <div class="bg-white/20 p-3 rounded-lg mr-4">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold text-emerald-100 text-sm uppercase mb-1">Manzil</h4>
-                                        <p class="font-light">Toshkent shahri, Universitet ko'chasi, 1-uy</p>
-                                        <p class="text-sm text-emerald-300 mt-1">Iqtisodiyot va pedagogika universiteti</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="flex items-start">
-                                    <div class="bg-white/20 p-3 rounded-lg mr-4">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold text-emerald-100 text-sm uppercase mb-1">Email</h4>
-                                        <p class="font-light">finance@ipu.uz</p>
-                                        <p class="font-light">kafedra@ipu.uz</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="relative z-10 mt-10">
-                            <p class="text-sm opacity-60 mb-2">Ijtimoiy tarmoqlar:</p>
-                            <div class="flex space-x-4">
-                                <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition">Telegram</a>
-                                <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition">Insta</a>
-                                <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition">Fb</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Form Panel -->
-                    <div class="p-10 bg-white">
-                        <form onsubmit="submitForm(event)" class="space-y-5">
-                            <div>
-                                <label class="block text-sm font-bold text-slate-700 mb-2">Ismingiz</label>
-                                <input type="text" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition" placeholder="F.I.Sh" required>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-bold text-slate-700 mb-2">Email</label>
-                                <input type="email" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition" placeholder="student@example.com" required>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-bold text-slate-700 mb-2">Xabar</label>
-                                <textarea rows="4" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition" placeholder="Savolingizni yozing..." required></textarea>
-                            </div>
-                            <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-lg shadow-lg hover:shadow-emerald-500/40 transition transform active:scale-95">
-                                Xabarni Yuborish
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-300 py-12 border-t border-slate-800">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
-                <div class="col-span-1 md:col-span-2">
-                    <h4 class="text-white font-bold text-xl mb-4 tracking-tight">MOLIYAVIY BIZNES REJA</h4>
-                    <p class="text-sm opacity-70 leading-relaxed max-w-sm">
-                        Iqtisodiyot va pedagogika universitetining rasmiy o'quv portali. Talabalar uchun barcha o'quv-uslubiy materiallar jamlangan yagona baza.
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Fan maqsadi</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Talabalarga bojxona ishi bo'yicha nazariy bilimlar va amaliy ko'nikmalarni 
+                        o'rgatish, bojxona qonunchiligi, bojxona rasmiylashtiruvi, bojxona nazorati 
+                        va bojxona to'lovlari bo'yicha chuqur bilim berish. Xalqaro savdo 
+                        munosabatlarini tartibga solish mexanizmlarini o'rganish.
                     </p>
                 </div>
-                <div>
-                    <h5 class="text-white font-bold mb-4">Tezkor Linklar</h5>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#about" class="hover:text-emerald-400 transition">Fan haqida</a></li>
-                        <li><a href="#docs" class="hover:text-emerald-400 transition">Hujjatlar</a></li>
-                        <li><a href="#teacher" class="hover:text-emerald-400 transition">O'qituvchi</a></li>
+
+                <!-- Fan vazifalari -->
+                <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 card-hover transition-all duration-300">
+                    <div class="w-14 h-14 bg-green-600 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-tasks text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Fan vazifalari</h3>
+                    <ul class="text-gray-700 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
+                            <span>Bojxona qonunchiligini o'rgatish</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
+                            <span>Bojxona rasmiylashtiruv jarayonlarini tahlil qilish</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
+                            <span>Tovar va transport vositalarini nazorat qilish usullarini o'rganish</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
+                            <span>Xalqaro bojxona amaliyotini tahlil qilish</span>
+                        </li>
                     </ul>
                 </div>
-                <div>
-                    <h5 class="text-white font-bold mb-4">Manzil</h5>
-                    <p class="text-sm opacity-70">Toshkent sh., Universitet ko'chasi 1-uy</p>
-                    <p class="text-sm opacity-70 mt-2">Tel: +998 (71) 123-45-67</p>
+
+                <!-- O'rganish natijalari -->
+                <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-2xl p-8 card-hover transition-all duration-300">
+                    <div class="w-14 h-14 bg-yellow-500 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-trophy text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">O'rganish natijalari</h3>
+                    <ul class="text-gray-700 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-star text-yellow-500 mt-1 mr-2"></i>
+                            <span>Bojxona hujjatlarini to'g'ri rasmiylashtirish</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-star text-yellow-500 mt-1 mr-2"></i>
+                            <span>Bojxona to'lovlarini hisoblash</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-star text-yellow-500 mt-1 mr-2"></i>
+                            <span>Import-eksport operatsiyalarini tahlil qilish</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-star text-yellow-500 mt-1 mr-2"></i>
+                            <span>Bojxona kodlarini aniqlash va qo'llash</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Fan iqtisodiyotdagi o'rni -->
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8 card-hover transition-all duration-300">
+                    <div class="w-14 h-14 bg-purple-600 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Fan iqtisodiyotdagi o'rni</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Bojxona ishi fani milliy iqtisodiyotning muhim tarkibiy qismi bo'lib, 
+                        tashqi savdo munosabatlarini tartibga solishda, davlat byudjetini 
+                        shakllantirishda va mahalliy ishlab chiqaruvchilarni himoya qilishda 
+                        muhim ahamiyatga ega. Fan eksport-import operatsiyalarini samarali 
+                        boshqarish uchun zarur bilimlarni beradi.
+                    </p>
                 </div>
             </div>
-            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs opacity-50">
-                <p>© 2024 Iqtisodiyot va pedagogika universiteti. Barcha huquqlar himoyalangan.</p>
-                <p>Designed for Finance Students</p>
+        </div>
+    </section>
+
+    <!-- 3. BOJXONA TIZIMI -->
+    <section id="system" class="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <span class="inline-block bg-blue-500/20 text-blue-300 text-sm font-semibold px-4 py-1 rounded-full mb-4 border border-blue-500/30">
+                    Tizim tuzilmasi
+                </span>
+                <h2 class="text-4xl font-bold text-white mb-4">Bojxona tizimi</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-400 to-green-400 mx-auto rounded-full"></div>
+                <p class="text-gray-400 mt-6 max-w-2xl mx-auto">
+                    O'zbekiston Respublikasi bojxona tizimining tuzilmasi va asosiy yo'nalishlari
+                </p>
+            </div>
+
+            <!-- Content Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Bojxona tushunchasi -->
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-blue-400/50 transition-all duration-300 hover:transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-landmark text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white text-center mb-4">Bojxona tushunchasi</h3>
+                    <p class="text-gray-400 text-sm text-center leading-relaxed">
+                        Bojxona вЂ” davlat chegara orqali o'tadigan tovarlar va transport vositalarini 
+                        nazorat qiluvchi, bojxona to'lovlarini undiruvchi davlat organi.
+                    </p>
+                </div>
+
+                <!-- Bojxona organlari -->
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-green-400/50 transition-all duration-300 hover:transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-sitemap text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white text-center mb-4">Bojxona organlari tizimi</h3>
+                    <ul class="text-gray-400 text-sm space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-angle-right text-green-400 mr-2"></i>
+                            Davlat bojxona qo'mitasi
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-angle-right text-green-400 mr-2"></i>
+                            Hududiy bojxona boshqarmalari
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-angle-right text-green-400 mr-2"></i>
+                            Bojxona postlari
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-angle-right text-green-400 mr-2"></i>
+                            Maxsus bojxona komplekslari
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Import-eksport nazorati -->
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-yellow-400/50 transition-all duration-300 hover:transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-exchange-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white text-center mb-4">ImportвЂ“eksport nazorati</h3>
+                    <ul class="text-gray-400 text-sm space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-angle-right text-yellow-400 mr-2"></i>
+                            Tovarlarni deklaratsiya qilish
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-angle-right text-yellow-400 mr-2"></i>
+                            Bojxona qiymatini aniqlash
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-angle-right text-yellow-400 mr-2"></i>
+                            Tarif va kvotalar boshqaruvi
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-angle-right text-yellow-400 mr-2"></i>
+                            Sertifikatlash va litsenziyalash
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Xalqaro bojxona amaliyoti -->
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-purple-400/50 transition-all duration-300 hover:transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-globe text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white text-center mb-4">Xalqaro bojxona amaliyoti</h3>
+                    <ul class="text-gray-400 text-sm space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-angle-right text-purple-400 mr-2"></i>
+                            Jahon bojxona tashkiloti (WCO)
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-angle-right text-purple-400 mr-2"></i>
+                            HS kodlash tizimi
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-angle-right text-purple-400 mr-2"></i>
+                            Xalqaro konvensiyalar
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-angle-right text-purple-400 mr-2"></i>
+                            Savdo kelishuvlari
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Diagram Section -->
+            <div class="mt-16 bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+                <h3 class="text-xl font-bold text-white text-center mb-8">Bojxona jarayoni bosqichlari</h3>
+                <div class="flex flex-wrap justify-center items-center gap-4">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">1</div>
+                        <span class="ml-3 text-gray-300 text-sm">Deklaratsiya</span>
+                    </div>
+                    <i class="fas fa-arrow-right text-gray-500 hidden md:block"></i>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">2</div>
+                        <span class="ml-3 text-gray-300 text-sm">Hujjat tekshiruvi</span>
+                    </div>
+                    <i class="fas fa-arrow-right text-gray-500 hidden md:block"></i>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold">3</div>
+                        <span class="ml-3 text-gray-300 text-sm">Tovar ko'rigi</span>
+                    </div>
+                    <i class="fas fa-arrow-right text-gray-500 hidden md:block"></i>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold">4</div>
+                        <span class="ml-3 text-gray-300 text-sm">To'lov</span>
+                    </div>
+                    <i class="fas fa-arrow-right text-gray-500 hidden md:block"></i>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white font-bold">5</div>
+                        <span class="ml-3 text-gray-300 text-sm">Chiqarish</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. FAN HUJJATLARI -->
+    <section id="documents" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <span class="inline-block bg-green-100 text-green-800 text-sm font-semibold px-4 py-1 rounded-full mb-4">
+                    <i class="fas fa-folder-open mr-1"></i> Materiallar
+                </span>
+                <h2 class="section-title text-4xl font-bold text-gray-900 flex justify-center">Fan hujjatlari</h2>
+                <p class="text-gray-600 mt-6 max-w-2xl mx-auto">
+                    O'quv jarayoni uchun zarur barcha hujjatlar va materiallar
+                </p>
+            </div>
+
+            <!-- Accordion Documents -->
+            <div class="max-w-4xl mx-auto space-y-4">
+                <!-- Sillabus -->
+                <div class="doc-card rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+                    <button class="accordion-btn w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors" onclick="toggleAccordion(this)">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
+                                <i class="fas fa-file-alt text-blue-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-900">Sillabus</h3>
+                                <p class="text-sm text-gray-500">Fan dasturi va rejasi</p>
+                            </div>
+                        </div>
+                        <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-6 pt-0 border-t border-gray-100">
+                            <div class="bg-blue-50 rounded-xl p-4 flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <i class="fas fa-file-pdf text-red-500 text-2xl mr-3"></i>
+                                    <div>
+                                        <p class="font-medium text-gray-900">Bojxona ishi fan sillabusi</p>
+                                        <p class="text-sm text-gray-500">PDF вЂў 2.5 MB</p>
+                                    </div>
+                                </div>
+                                <a href="#" class="inline-flex items-center bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+                                    <i class="fas fa-download mr-2"></i>Yuklab olish
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ma'ruzalar -->
+                <div class="doc-card rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+                    <button class="accordion-btn w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors" onclick="toggleAccordion(this)">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4">
+                                <i class="fas fa-book text-green-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-900">Ma'ruzalar</h3>
+                                <p class="text-sm text-gray-500">1вЂ“15 mavzular bo'yicha materiallar</p>
+                            </div>
+                        </div>
+                        <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-6 pt-0 border-t border-gray-100">
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                    <span class="text-gray-700"><i class="fas fa-file-alt text-gray-400 mr-2"></i>1-mavzu: Bojxona ishining asoslari</span>
+                                    <a href="#" class="text-blue-600 hover:text-blue-700"><i class="fas fa-download"></i></a>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                    <span class="text-gray-700"><i class="fas fa-file-alt text-gray-400 mr-2"></i>2-mavzu: Bojxona qonunchiligi</span>
+                                    <a href="#" class="text-blue-600 hover:text-blue-700"><i class="fas fa-download"></i></a>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                    <span class="text-gray-700"><i class="fas fa-file-alt text-gray-400 mr-2"></i>3-mavzu: Bojxona deklaratsiyasi</span>
+                                    <a href="#" class="text-blue-600 hover:text-blue-700"><i class="fas fa-download"></i></a>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                    <span class="text-gray-700"><i class="fas fa-file-alt text-gray-400 mr-2"></i>4-mavzu: Bojxona to'lovlari</span>
+                                    <a href="#" class="text-blue-600 hover:text-blue-700"><i class="fas fa-download"></i></a>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                    <span class="text-gray-700"><i class="fas fa-file-alt text-gray-400 mr-2"></i>5-mavzu: Bojxona tariflari</span>
+                                    <a href="#" class="text-blue-600 hover:text-blue-700"><i class="fas fa-download"></i></a>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                    <span class="text-gray-700"><i class="fas fa-file-alt text-gray-400 mr-2"></i>6-mavzu: Tovar klassifikatsiyasi</span>
+                                    <a href="#" class="text-blue-600 hover:text-blue-700"><i class="fas fa-download"></i></a>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                    <span class="text-gray-700"><i class="fas fa-file-alt text-gray-400 mr-2"></i>7-mavzu: Bojxona nazorati</span>
+                                    <a href="#" class="text-blue-600 hover:text-blue-700"><i class="fas fa-download"></i></a>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                    <span class="text-gray-700"><i class="fas fa-file-alt text-gray-400 mr-2"></i>8-mavzu: Bojxona rasmiylashtiruvi</span>
+                                    <a href="#" class="text-blue-600 hover:text-blue-700"><i class="fas fa-download"></i></a>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                    <span class="text-gray-700"><i class="fas fa-file-alt text-gray-400 mr-2"></i>9-mavzu: Import operatsiyalari</span>
+                                    <a href="#" class="text-blue-600 hover:text-blue-700"><i class="fas fa-download"></i></a>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                    <span class="text-gray-700"><i class="fas fa-file-alt text-gray-400 mr-2"></i>10-mavzu: Eksport operatsiyalari</span>
+                                    <a href="#" class="text-blue-600 hover:text-blue-700"><i class="fas fa-download"></i></a>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                    <span class="text-gray-700"><i class="fas fa-file-alt text-gray-400 mr-2"></i>11-mavzu: Bojxona rejimlari</span>
+                                    <a href="#" class="text-blue-600 hover:text-blue-700"><i class="fas fa-download"></i></a>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                    <span class="text-gray-700"><i class="fas fa-file-alt text-gray-400 mr-2"></i>12-mavzu: Bojxona qiymati</span>
+                                    <a href="#" class="text-blue-600 hover:text-blue-700"><i class="fas fa-download"></i></a>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                    <span class="text-gray-700"><i class="fas fa-file-alt text-gray-400 mr-2"></i>13-mavzu: Bojxona ekspertizasi</span>
+                                    <a href="#" class="text-blue-600 hover:text-blue-700"><i class="fas fa-download"></i></a>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                    <span class="text-gray-700"><i class="fas fa-file-alt text-gray-400 mr-2"></i>14-mavzu: Xalqaro bojxona huquqi</span>
+                                    <a href="#" class="text-blue-600 hover:text-blue-700"><i class="fas fa-download"></i></a>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                    <span class="text-gray-700"><i class="fas fa-file-alt text-gray-400 mr-2"></i>15-mavzu: Bojxona xizmatlari rivojlanishi</span>
+                                    <a href="#" class="text-blue-600 hover:text-blue-700"><i class="fas fa-download"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Amaliy materiallar -->
+                <div class="doc-card rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+                    <button class="accordion-btn w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors" onclick="toggleAccordion(this)">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center mr-4">
+                                <i class="fas fa-tools text-yellow-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-900">Amaliy materiallar</h3>
+                                <p class="text-sm text-gray-500">Mashg'ulotlar, keyslar, hisoblash masalalari</p>
+                            </div>
+                        </div>
+                        <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-6 pt-0 border-t border-gray-100">
+                            <div class="grid md:grid-cols-3 gap-4">
+                                <div class="bg-yellow-50 rounded-xl p-4 text-center hover:shadow-md transition-shadow">
+                                    <i class="fas fa-clipboard-list text-yellow-600 text-3xl mb-3"></i>
+                                    <h4 class="font-semibold text-gray-900 mb-1">Amaliy mashg'ulotlar</h4>
+                                    <p class="text-sm text-gray-500 mb-3">15 ta mashg'ulot</p>
+                                    <a href="#" class="text-blue-600 text-sm hover:underline">Yuklab olish</a>
+                                </div>
+                                <div class="bg-orange-50 rounded-xl p-4 text-center hover:shadow-md transition-shadow">
+                                    <i class="fas fa-briefcase text-orange-600 text-3xl mb-3"></i>
+                                    <h4 class="font-semibold text-gray-900 mb-1">Keyslar</h4>
+                                    <p class="text-sm text-gray-500 mb-3">10 ta vaziyatli keys</p>
+                                    <a href="#" class="text-blue-600 text-sm hover:underline">Yuklab olish</a>
+                                </div>
+                                <div class="bg-red-50 rounded-xl p-4 text-center hover:shadow-md transition-shadow">
+                                    <i class="fas fa-calculator text-red-600 text-3xl mb-3"></i>
+                                    <h4 class="font-semibold text-gray-900 mb-1">Hisoblash masalalari</h4>
+                                    <p class="text-sm text-gray-500 mb-3">25 ta masala</p>
+                                    <a href="#" class="text-blue-600 text-sm hover:underline">Yuklab olish</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slaydlar -->
+                <div class="doc-card rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+                    <button class="accordion-btn w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors" onclick="toggleAccordion(this)">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mr-4">
+                                <i class="fas fa-presentation text-purple-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-900">Slaydlar</h3>
+                                <p class="text-sm text-gray-500">PowerPoint va PDF taqdimotlar</p>
+                            </div>
+                        </div>
+                        <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-6 pt-0 border-t border-gray-100">
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between p-4 bg-purple-50 rounded-lg">
+                                    <div class="flex items-center">
+                                        <i class="fab fa-microsoft text-orange-500 text-xl mr-3"></i>
+                                        <div>
+                                            <p class="font-medium text-gray-900">Barcha mavzular bo'yicha slaydlar</p>
+                                            <p class="text-sm text-gray-500">PowerPoint вЂў 45 MB</p>
+                                        </div>
+                                    </div>
+                                    <a href="#" class="inline-flex items-center bg-purple-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors">
+                                        <i class="fas fa-download mr-2"></i>Yuklab olish
+                                    </a>
+                                </div>
+                                <div class="flex items-center justify-between p-4 bg-red-50 rounded-lg">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-file-pdf text-red-500 text-xl mr-3"></i>
+                                        <div>
+                                            <p class="font-medium text-gray-900">Vizual dars materiallari</p>
+                                            <p class="text-sm text-gray-500">PDF вЂў 30 MB</p>
+                                        </div>
+                                    </div>
+                                    <a href="#" class="inline-flex items-center bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-red-700 transition-colors">
+                                        <i class="fas fa-download mr-2"></i>Yuklab olish
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. AMALIY MASHG'ULOTLAR -->
+    <section id="practice" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <span class="inline-block bg-orange-100 text-orange-800 text-sm font-semibold px-4 py-1 rounded-full mb-4">
+                    <i class="fas fa-flask mr-1"></i> Amaliyot
+                </span>
+                <h2 class="section-title text-4xl font-bold text-gray-900 flex justify-center">Amaliy mashg'ulotlar</h2>
+                <p class="text-gray-600 mt-6 max-w-2xl mx-auto">
+                    Nazariy bilimlarni amaliyotda qo'llash uchun maxsus ishlab chiqilgan topshiriqlar
+                </p>
+            </div>
+
+            <!-- Content Grid -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Amaliy topshiriqlar -->
+                <div class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl p-8 border border-orange-100">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-tasks text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">Amaliy topshiriqlar</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm mr-3 flex-shrink-0">1</span>
+                            <span class="text-gray-700">Bojxona deklaratsiyasini to'ldirish</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm mr-3 flex-shrink-0">2</span>
+                            <span class="text-gray-700">Bojxona to'lovlarini hisoblash</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm mr-3 flex-shrink-0">3</span>
+                            <span class="text-gray-700">HS kodlarini aniqlash</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm mr-3 flex-shrink-0">4</span>
+                            <span class="text-gray-700">Bojxona qiymatini baholash</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm mr-3 flex-shrink-0">5</span>
+                            <span class="text-gray-700">Tashqi savdo shartnomalarini tahlil qilish</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Bojxona rasmiylashtiruvi misollari -->
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 border border-blue-100">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-file-signature text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">Rasmiylashtirish misollari</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Import tovarlarini rasmiylashtirish tartibi</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Eksport hujjatlarini tayyorlash</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Tranzit yuklar bilan ishlash</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Bojxona omborlari bilan ishlash</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Erkin iqtisodiy zonalar amaliyoti</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Vaziyatli masalalar -->
+                <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 border border-green-100">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-puzzle-piece text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">Vaziyatli masalalar</h3>
+                    </div>
+                    <p class="text-gray-700 mb-4">Talabalar uchun real hayotiy vaziyatlarga asoslangan masalalar:</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-angle-right text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Bojxona nizolarini hal qilish</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-angle-right text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Noqonuniy import holatlari tahlili</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-angle-right text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Tarif imtiyozlaridan foydalanish</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-angle-right text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Bojxona auditi jarayonlari</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Mustaqil ishlar -->
+                <div class="bg-gradient-to-br from-purple-50 to-violet-50 rounded-2xl p-8 border border-purple-100">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-user-graduate text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">Mustaqil ishlar</h3>
+                    </div>
+                    <p class="text-gray-700 mb-4">Talabalarning mustaqil tadqiqot ishlari uchun mavzular:</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-bookmark text-purple-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">O'zbekiston bojxona siyosatini tahlil qilish</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-bookmark text-purple-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Xorijiy davlatlar bojxona amaliyotini o'rganish</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-bookmark text-purple-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Elektron bojxona tizimlarini tadqiq qilish</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-bookmark text-purple-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Bojxona xizmatlari samaradorligini baholash</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. FAN O'QITUVCHISI -->
+    <section id="teacher" class="py-20 bg-gradient-to-br from-slate-100 to-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <span class="inline-block bg-blue-100 text-blue-800 text-sm font-semibold px-4 py-1 rounded-full mb-4">
+                    <i class="fas fa-chalkboard-teacher mr-1"></i> Pedagog
+                </span>
+                <h2 class="section-title text-4xl font-bold text-gray-900 flex justify-center">Fan o'qituvchisi</h2>
+                <p class="text-gray-600 mt-6 max-w-2xl mx-auto">
+                    Fanni olib boruvchi professor-o'qituvchi haqida ma'lumot
+                </p>
+            </div>
+
+            <!-- Teacher Card -->
+            <div class="max-w-4xl mx-auto">
+                <div class="teacher-card rounded-3xl overflow-hidden shadow-2xl">
+                    <div class="md:flex">
+                        <!-- Photo Section -->
+                        <div class="md:w-1/3 bg-gradient-to-br from-blue-800 to-blue-900 p-8 flex flex-col items-center justify-center">
+                            <div class="w-40 h-40 rounded-full overflow-hidden border-4 border-white/30 shadow-xl mb-6">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                                     alt="O'qituvchi rasmi" 
+                                     class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex space-x-3">
+                                <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                                    <i class="fab fa-telegram-plane"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Info Section -->
+                        <div class="md:w-2/3 bg-white p-8">
+                            <div class="mb-6">
+                                <h3 class="text-2xl font-bold text-gray-900 mb-1">Karimov Jasur Alisher o'g'li</h3>
+                                <p class="text-blue-600 font-medium">Katta o'qituvchi</p>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                        <i class="fas fa-graduation-cap text-blue-600"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500">Ilmiy darajasi</p>
+                                        <p class="font-medium text-gray-900">Iqtisodiyot fanlari nomzodi (PhD)</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start">
+                                    <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                        <i class="fas fa-book text-green-600"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500">O'qitadigan fanlari</p>
+                                        <p class="font-medium text-gray-900">Bojxona ishi, Tashqi iqtisodiy faoliyat, Xalqaro savdo</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start">
+                                    <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                        <i class="fas fa-briefcase text-yellow-600"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500">Ish tajribasi</p>
+                                        <p class="font-medium text-gray-900">12 yillik pedagogik tajriba</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start">
+                                    <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                        <i class="fas fa-envelope text-purple-600"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500">Email</p>
+                                        <a href="mailto:j.karimov@ipu.uz" class="font-medium text-blue-600 hover:underline">j.karimov@ipu.uz</a>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start">
+                                    <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                        <i class="fas fa-phone text-red-600"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500">Telefon</p>
+                                        <p class="font-medium text-gray-900">+998 71 123-45-67</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 pt-6 border-t border-gray-200">
+                                <p class="text-sm text-gray-600 italic">
+                                    "Bojxona ishi fani talabalarni xalqaro savdo munosabatlarining muhim tarkibiy qismi 
+                                    bo'lgan bojxona sohasida chuqur bilim va amaliy ko'nikmalar bilan qurollantiradi."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. ALOQA -->
+    <section id="contact" class="py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <span class="inline-block bg-blue-500/20 text-blue-300 text-sm font-semibold px-4 py-1 rounded-full mb-4 border border-blue-500/30">
+                    <i class="fas fa-paper-plane mr-1"></i> Bog'lanish
+                </span>
+                <h2 class="text-4xl font-bold text-white mb-4">Aloqa</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-400 to-green-400 mx-auto rounded-full"></div>
+                <p class="text-gray-400 mt-6 max-w-2xl mx-auto">
+                    Savollaringiz yoki takliflaringiz bo'lsa, biz bilan bog'laning
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+                    <h3 class="text-xl font-bold text-white mb-6">Xabar yuborish</h3>
+                    <form id="contactForm" class="space-y-5">
+                        <div>
+                            <label class="block text-gray-300 text-sm font-medium mb-2">Ismingiz</label>
+                            <input type="text" name="name" required
+                                   class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 transition-colors"
+                                   placeholder="Ismingizni kiriting">
+                        </div>
+                        <div>
+                            <label class="block text-gray-300 text-sm font-medium mb-2">Email</label>
+                            <input type="email" name="email" required
+                                   class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 transition-colors"
+                                   placeholder="email@example.com">
+                        </div>
+                        <div>
+                            <label class="block text-gray-300 text-sm font-medium mb-2">Xabar</label>
+                            <textarea name="message" rows="4" required
+                                      class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 transition-colors resize-none"
+                                      placeholder="Xabaringizni yozing..."></textarea>
+                        </div>
+                        <button type="submit"
+                                class="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-blue-700 transition-all flex items-center justify-center">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            Yuborish
+                        </button>
+                    </form>
+                    <div id="formMessage" class="hidden mt-4 p-4 rounded-lg text-center"></div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="space-y-6">
+                    <!-- University Info -->
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center mr-4">
+                                <i class="fas fa-university text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-white">Universitet</h4>
+                                <p class="text-gray-400 text-sm">O'quv muassasasi</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">Iqtisodiyot va Pedagogika Universiteti</p>
+                    </div>
+
+                    <!-- Subject Info -->
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center mr-4">
+                                <i class="fas fa-book-open text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-white">Fan</h4>
+                                <p class="text-gray-400 text-sm">O'quv fani nomi</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">Bojxona ishi</p>
+                    </div>
+
+                    <!-- Address -->
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-yellow-500 rounded-xl flex items-center justify-center mr-4">
+                                <i class="fas fa-map-marker-alt text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-white">Manzil</h4>
+                                <p class="text-gray-400 text-sm">Universitet joylashuvi</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">Toshkent shahri, Universitet ko'chasi, 1-uy</p>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center mr-4">
+                                <i class="fas fa-phone text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-white">Telefon</h4>
+                                <p class="text-gray-400 text-sm">Bog'lanish uchun</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">+998 71 123-45-67</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 py-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-university text-white"></i>
+                    </div>
+                    <div>
+                        <p class="text-white font-semibold">Bojxona Ishi</p>
+                        <p class="text-gray-500 text-sm">Iqtisodiyot va Pedagogika Universiteti</p>
+                    </div>
+                </div>
+                <div class="text-center md:text-right">
+                    <p class="text-gray-500 text-sm">В© 2024 Barcha huquqlar himoyalangan</p>
+                    <p class="text-gray-600 text-xs mt-1">O'quv fani uchun maxsus ishlab chiqilgan</p>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- JavaScript -->
     <script>
-        // Smooth scrolling for navigation links with offset
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-nav').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                
-                if (targetSection) {
-                    // Close mobile menu if open
-                    document.getElementById('mobile-menu').classList.add('hidden');
-                    
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
                     window.scrollTo({
-                        top: targetSection.offsetTop - 80, // Offset for fixed header
+                        top: offsetTop,
                         behavior: 'smooth'
                     });
                 }
             });
         });
 
-        // Intersection Observer for Reveal Animation and Active Nav Link
-        const sections = document.querySelectorAll('section');
-        const navItems = document.querySelectorAll('.nav-item');
+        // Active nav link on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
 
-        const observerOptions = {
-            threshold: 0.2,
-            rootMargin: "-100px 0px -100px 0px"
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                // Reveal animation
-                if (entry.isIntersecting) {
-                    entry.target.querySelector('.reveal')?.classList.add('active');
-                    entry.target.classList.add('active'); 
-                }
-
-                // Active Nav State
-                if (entry.isIntersecting) {
-                    const id = entry.target.getAttribute('id');
-                    navItems.forEach(item => {
-                        item.classList.remove('active');
-                        // Simple check for href ending with #id
-                        if (item.getAttribute('href').endsWith(`#${id}`)) {
-                            item.classList.add('active');
-                        }
-                    });
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
                 }
             });
-        }, observerOptions);
 
-        sections.forEach(section => {
-            observer.observe(section);
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
         });
 
-        // Trigger reveal for Hero section manually on load
-        window.addEventListener('load', () => {
-            document.querySelector('#home .reveal')?.classList.add('active');
-        });
+        // Accordion functionality
+        function toggleAccordion(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('.fa-chevron-down');
+            
+            // Close all other accordions
+            document.querySelectorAll('.accordion-content').forEach(item => {
+                if (item !== content) {
+                    item.classList.remove('active');
+                }
+            });
+            document.querySelectorAll('.accordion-btn .fa-chevron-down').forEach(i => {
+                if (i !== icon) {
+                    i.style.transform = 'rotate(0deg)';
+                }
+            });
 
-        // Helper functions
-        function toggleAnswer(id) {
-            const el = document.getElementById(id);
-            if (el.classList.contains('hidden')) {
-                el.classList.remove('hidden');
-                el.classList.add('block');
-            } else {
-                el.classList.add('hidden');
-                el.classList.remove('block');
-            }
+            // Toggle current accordion
+            content.classList.toggle('active');
+            icon.style.transform = content.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
         }
 
-        function submitForm(event) {
-            event.preventDefault();
-            const btn = event.target.querySelector('button[type="submit"]');
-            const originalText = btn.innerText;
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formMessage = document.getElementById('formMessage');
+            formMessage.classList.remove('hidden');
+            formMessage.classList.add('bg-green-500/20', 'text-green-300', 'border', 'border-green-500/30');
+            formMessage.innerHTML = '<i class="fas fa-check-circle mr-2"></i>Xabaringiz muvaffaqiyatli yuborildi!';
+            this.reset();
             
-            btn.innerText = 'Yuborilmoqda...';
-            btn.disabled = true;
-
             setTimeout(() => {
-                alert('Xabaringiz qabul qilindi! Tez orada siz bilan bog\'lanamiz.');
-                event.target.reset();
-                btn.innerText = originalText;
-                btn.disabled = false;
-            }, 1500);
-        }
-
-        // Quiz Logic
-        const quizData = [
-            { question: "Biznes rejaning qaysi qismi eng muhim hisoblanadi?", a: "Marketing rejasi", b: "Moliyaviy reja", c: "Tashkiliy reja", d: "Xatarlar tahlili", correct: "b" },
-            { question: "NPV (Net Present Value) nima?", a: "Joriy sof qiymat", b: "Umumiy daromad", c: "Soliq to'lovlari", d: "Kredit foizi", correct: "a" },
-            { question: "Qaysi ko'rsatkich loyihaning o'zini oqlash muddatini bildiradi?", a: "IRR", b: "ROI", c: "Payback Period", d: "EBITDA", correct: "c" }
-        ];
-
-        function startQuiz() {
-            const container = document.getElementById('quiz-container');
-            let quizHTML = `<div class="bg-slate-800 text-white p-6 rounded-lg text-left shadow-inner animate-fade-in">`;
-            
-            quizData.forEach((item, index) => {
-                quizHTML += `
-                    <div class="mb-6 pb-6 border-b border-slate-700 last:border-0">
-                        <p class="font-bold mb-3 text-lg text-blue-300">${index + 1}. ${item.question}</p>
-                        <div class="space-y-2 text-sm">
-                            <label class="flex items-center cursor-pointer hover:text-emerald-400 transition bg-slate-700/50 p-3 rounded-lg"><input type="radio" name="q${index}" value="a" class="mr-3 form-radio text-emerald-500"> ${item.a}</label>
-                            <label class="flex items-center cursor-pointer hover:text-emerald-400 transition bg-slate-700/50 p-3 rounded-lg"><input type="radio" name="q${index}" value="b" class="mr-3 form-radio text-emerald-500"> ${item.b}</label>
-                            <label class="flex items-center cursor-pointer hover:text-emerald-400 transition bg-slate-700/50 p-3 rounded-lg"><input type="radio" name="q${index}" value="c" class="mr-3 form-radio text-emerald-500"> ${item.c}</label>
-                            <label class="flex items-center cursor-pointer hover:text-emerald-400 transition bg-slate-700/50 p-3 rounded-lg"><input type="radio" name="q${index}" value="d" class="mr-3 form-radio text-emerald-500"> ${item.d}</label>
-                        </div>
-                    </div>`;
-            });
-            quizHTML += `
-                <button onclick="submitQuiz()" class="w-full bg-emerald-600 text-white font-bold py-3 rounded-lg hover:bg-emerald-500 transition shadow-lg">Natijani Tekshirish</button>
-                <div id="quiz-result" class="mt-6 text-xl font-bold text-center hidden p-4 rounded-lg bg-slate-900"></div>
-            </div>`;
-            container.innerHTML = quizHTML;
-        }
-
-        function submitQuiz() {
-            let score = 0;
-            quizData.forEach((item, index) => {
-                const selected = document.querySelector(`input[name="q${index}"]:checked`);
-                if (selected && selected.value === item.correct) score++;
-            });
-            const res = document.getElementById('quiz-result');
-            res.classList.remove('hidden');
-            res.innerHTML = `Sizning natijangiz: <span class="${score === quizData.length ? 'text-green-400' : 'text-blue-400'}">${score} / ${quizData.length}</span>`;
-            
-            if(score === quizData.length) {
-                res.innerHTML += `<br><span class="text-sm text-slate-400 mt-2 block">Barakalla! Moliyachi bo'lishga tayyorsiz.</span>`;
-            }
-        }
+                formMessage.classList.add('hidden');
+            }, 5000);
+        });
     </script>
 </body>
 </html>
