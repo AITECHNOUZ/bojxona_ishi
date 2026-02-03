@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="uz" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moliyaviy Biznes Reja - Iqtisodiyot va pedagogika universiteti</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.7)), url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'); /* Finance/Charts background */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .section-padding {
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+        .nav-item.active {
+            color: #059669; /* emerald-600 */
+            position: relative;
+        }
+        .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #059669;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-700 antialiased">
+
+    <!-- Header & Navigation Fixed -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-nav shadow-md transition-all duration-300">
+        <!-- Top Info Bar -->
+        <div class="bg-emerald-900 text-emerald-100 text-xs py-2 border-b border-emerald-800">
+            <div class="container mx-auto px-4 flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <span><i class="mr-1">🏛️</i> Iqtisodiyot va pedagogika universiteti</span>
+                    <span class="hidden md:inline">|</span>
+                    <span class="hidden md:inline">📈 Moliyaviy biznes reja fani</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="mailto:finance@ipu.uz" class="hover:text-white transition">finance@ipu.uz</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Nav -->
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 bg-emerald-600 text-white rounded-lg flex items-center justify-center shadow-lg transform group-hover:rotate-12 transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <div class="leading-tight">
+                        <h1 class="text-lg font-bold text-slate-800 uppercase tracking-tight">Moliyaviy Reja</h1>
+                        <p class="text-[10px] text-emerald-600 font-bold uppercase tracking-widest">O'quv portali</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden lg:block">
+                    <ul class="flex space-x-6 text-sm font-semibold text-slate-600">
+                        <li><a href="#home" class="nav-item hover:text-emerald-600 transition py-2">Bosh sahifa</a></li>
+                        <li><a href="#about" class="nav-item hover:text-emerald-600 transition py-2">Fan haqida</a></li>
+                        <li><a href="#structure" class="nav-item hover:text-emerald-600 transition py-2">Tuzilma</a></li>
+                        <li><a href="#docs" class="nav-item hover:text-emerald-600 transition py-2">Hujjatlar</a></li>
+                        <li><a href="#practice" class="nav-item hover:text-emerald-600 transition py-2">Amaliyot</a></li>
+                        <li><a href="#teacher" class="nav-item hover:text-emerald-600 transition py-2">O‘qituvchi</a></li>
+                        <li><a href="#contact" class="nav-item bg-emerald-600 text-white px-5 py-2.5 rounded-full hover:bg-emerald-700 transition shadow-md hover:shadow-lg">Aloqa</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button class="lg:hidden text-slate-700 focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-100 absolute w-full left-0 shadow-xl">
+            <ul class="flex flex-col p-4 space-y-2 font-medium">
+                <li><a href="#home" class="block px-4 py-2 rounded hover:bg-emerald-50 text-slate-700">Bosh sahifa</a></li>
+                <li><a href="#about" class="block px-4 py-2 rounded hover:bg-emerald-50 text-slate-700">Fan haqida</a></li>
+                <li><a href="#structure" class="block px-4 py-2 rounded hover:bg-emerald-50 text-slate-700">Biznes reja tuzilmasi</a></li>
+                <li><a href="#docs" class="block px-4 py-2 rounded hover:bg-emerald-50 text-slate-700">Hujjatlar</a></li>
+                <li><a href="#practice" class="block px-4 py-2 rounded hover:bg-emerald-50 text-slate-700">Amaliyot</a></li>
+                <li><a href="#teacher" class="block px-4 py-2 rounded hover:bg-emerald-50 text-slate-700">O‘qituvchi</a></li>
+                <li><a href="#contact" class="block px-4 py-2 rounded bg-emerald-600 text-white text-center mt-2">Aloqa</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- 1. Bosh sahifa (Hero) -->
+        <section id="home" class="relative h-screen flex items-center hero-bg text-white">
+            <div class="container mx-auto px-4 relative z-10 pt-20">
+                <div class="max-w-3xl reveal active">
+                    <div class="inline-flex items-center bg-emerald-600/30 backdrop-blur-sm border border-emerald-400/30 rounded-full px-4 py-1.5 mb-6">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 mr-2 animate-pulse"></span>
+                        <span class="text-sm font-semibold tracking-wide uppercase">2024-2025 O'quv yili</span>
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight tracking-tight">
+                        MOLIYAVIY <br> BIZNES REJA
+                    </h1>
+                    <p class="text-xl md:text-2xl text-emerald-100 mb-4 font-light border-l-4 border-emerald-500 pl-4">
+                        Iqtisodiyot va pedagogika universitetida <br> o‘qitiladigan fundamental fan.
+                    </p>
+                    <p class="text-lg text-slate-300 mb-10 max-w-2xl leading-relaxed">
+                        Biznes g‘oyalarni moliyaviy asoslash, investitsion jozibadorlikni baholash va samarali byudjetlashtirish ko‘nikmalarini shakllantiring.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#about" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:shadow-emerald-500/30 transition transform hover:-translate-y-1 text-center">
+                            Fanni O'rganish
+                        </a>
+                        <a href="#docs" class="bg-white/10 backdrop-blur-md hover:bg-white/20 text-white border border-white/30 font-bold py-4 px-8 rounded-lg transition transform hover:-translate-y-1 text-center">
+                            O'quv Dasturi
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scroll Down Indicator -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <a href="#about" class="flex flex-col items-center text-slate-400 hover:text-white transition">
+                    <span class="text-xs uppercase tracking-widest mb-2">Pastga</span>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- 2. Fan haqida -->
+        <section id="about" class="section-padding bg-white relative overflow-hidden reveal">
+            <!-- Decorative Elements -->
+            <div class="absolute top-0 left-0 w-1/3 h-full bg-slate-50 skew-x-12 transform -translate-x-20 -z-0"></div>
+
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="flex flex-col lg:flex-row items-center gap-16">
+                    <!-- Text Side -->
+                    <div class="lg:w-1/2">
+                        <span class="text-emerald-600 font-bold tracking-wider uppercase text-sm mb-2 block">Umumiy Ma'lumot</span>
+                        <h2 class="text-4xl font-extrabold text-slate-900 mb-6 leading-tight">Fan Maqsadi va <span class="text-emerald-600">Vazifalari</span></h2>
+                        <p class="text-lg text-slate-600 mb-6 leading-relaxed">
+                            "Moliyaviy biznes reja" fani talabalarga korxona faoliyatini strategik rejalashtirish, moliyaviy resurslarni boshqarish va investitsiya loyihalarini tahlil qilish bo‘yicha chuqur bilim berishga qaratilgan.
+                        </p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex">
+                                <div class="flex-shrink-0 mr-4">
+                                    <div class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-slate-800 mb-2">O'quv Natijalari</h4>
+                                    <p class="text-slate-600">Biznes rejalarni mustaqil tuza olish, moliyaviy xatarlarni baholash va foydalilik ko'rsatkichlarini hisoblash.</p>
+                                </div>
+                            </div>
+                            <div class="flex">
+                                <div class="flex-shrink-0 mr-4">
+                                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-slate-800 mb-2">Iqtisodiy Ahamiyati</h4>
+                                    <p class="text-slate-600">Raqobatbardosh biznes modellarini yaratish va investitsiyalarni jalb qilishda asosiy vosita.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Image Side -->
+                    <div class="lg:w-1/2 relative">
+                        <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+                            <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Financial Planning" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 text-white">
+                                <p class="text-sm font-bold uppercase tracking-wider text-emerald-400 mb-1">Strategik Tahlil</p>
+                                <h3 class="text-2xl font-bold">Moliya va Rejalashtirish</h3>
+                            </div>
+                        </div>
+                        <!-- Floating Stats Card -->
+                        <div class="absolute -top-10 -right-5 bg-white p-6 rounded-xl shadow-xl border border-slate-100 hidden md:block w-64 animate-bounce" style="animation-duration: 3s;">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-slate-500 text-sm">Rentabellik (ROI)</span>
+                                <span class="font-bold text-green-600">+24%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                <div class="bg-green-500 h-full w-4/5"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Biznes Reja Tuzilmasi -->
+        <section id="structure" class="section-padding bg-slate-50 relative reveal">
+            <div class="container mx-auto px-4">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-emerald-600 font-bold tracking-wider uppercase text-sm">Arxitektura</span>
+                    <h2 class="text-4xl font-extrabold text-slate-900 mt-2 mb-4">Biznes Reja Tuzilmasi</h2>
+                    <p class="text-slate-600 text-lg">Muvaffaqiyatli loyihaning asosi — to‘g‘ri tuzilgan moliyaviy modeldir. Quyidagi bo'limlar biznes rejaning yuragi hisoblanadi.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 border border-slate-100">
+                        <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center text-white mb-6 shadow-blue-500/30 shadow-lg">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 3.666V3m6 18c0 1.51-2.512 2.308-4.128 2.818C15.86 24.166 14.865 25 14 25h-4c-.866 0-1.861-.835-2.872-1.182C5.512 23.308 3 22.51 3 21m18 0v-5.666M3 21v-5.666m18 0V11.05c0-1.51-2.512-2.308-4.128-2.818C15.86 7.834 14.865 7 14 7h-4c-.866 0-1.861.834-2.872 1.182C5.512 8.742 3 9.54 3 11.05v4.284"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Daromad va Xarajatlar</h3>
+                        <p class="text-slate-600 leading-relaxed mb-4">Mahsulot sotishdan tushadigan daromadlar prognozi va o‘zgarmas hamda o‘zgaruvchan xarajatlar hisobi.</p>
+                        <ul class="text-sm text-slate-500 space-y-2">
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>Sotuv rejasi</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>OPEX (Operatsion xarajat)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 border border-slate-100">
+                        <div class="w-14 h-14 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-xl flex items-center justify-center text-white mb-6 shadow-emerald-500/30 shadow-lg">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Cash Flow (Pul Oqimi)</h3>
+                        <p class="text-slate-600 leading-relaxed mb-4">Korxonaga kirib kelayotgan va chiqib ketayotgan naqd pul mablag‘larining harakatini rejalashtirish.</p>
+                         <ul class="text-sm text-slate-500 space-y-2">
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-2"></span>Likvidlik nazorati</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-2"></span>Kassa uzilishi (Cash gap)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 border border-slate-100">
+                        <div class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-indigo-700 rounded-xl flex items-center justify-center text-white mb-6 shadow-indigo-500/30 shadow-lg">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Samaradorlik</h3>
+                        <p class="text-slate-600 leading-relaxed mb-4">Loyihaning o‘zini oqlash muddati (Payback Period), sof keltirilgan qiymat (NPV) va rentabellik.</p>
+                         <ul class="text-sm text-slate-500 space-y-2">
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-indigo-500 rounded-full mr-2"></span>NPV & IRR</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-indigo-500 rounded-full mr-2"></span>Break-even point</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Fan Hujjatlari -->
+        <section id="docs" class="section-padding bg-white reveal">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                    <div class="mb-4 md:mb-0">
+                        <span class="text-emerald-600 font-bold tracking-wider uppercase text-sm">Resurslar</span>
+                        <h2 class="text-4xl font-extrabold text-slate-900 mt-2">O'quv Materiallari</h2>
+                    </div>
+                    <button class="text-emerald-600 font-bold hover:text-emerald-800 transition flex items-center">
+                        Barcha fayllarni yuklash
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </button>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- 4.1 Sillabus -->
+                    <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:border-emerald-400 hover:shadow-lg transition duration-300 group">
+                        <div class="w-12 h-12 bg-red-100 text-red-600 rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition">📄</div>
+                        <h3 class="font-bold text-lg text-slate-900 mb-2">Sillabus</h3>
+                        <p class="text-slate-500 text-sm mb-4">Fan dasturi, baholash mezonlari va mavzular rejasi.</p>
+                        <a href="#" class="inline-flex items-center text-emerald-600 font-semibold text-sm hover:underline">
+                            Yuklab olish (PDF)
+                        </a>
+                    </div>
+
+                    <!-- 4.2 Ma'ruzalar -->
+                    <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:border-emerald-400 hover:shadow-lg transition duration-300 group">
+                        <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition">📚</div>
+                        <h3 class="font-bold text-lg text-slate-900 mb-2">Ma'ruzalar Matni</h3>
+                        <p class="text-slate-500 text-sm mb-4">Moliyaviy rejalashtirish nazariyasi bo'yicha to'liq kurs.</p>
+                        <a href="#" class="inline-flex items-center text-emerald-600 font-semibold text-sm hover:underline">
+                            Kursni ochish
+                        </a>
+                    </div>
+
+                    <!-- 4.3 Amaliy -->
+                    <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:border-emerald-400 hover:shadow-lg transition duration-300 group">
+                        <div class="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition">🧮</div>
+                        <h3 class="font-bold text-lg text-slate-900 mb-2">Amaliy Materiallar</h3>
+                        <p class="text-slate-500 text-sm mb-4">Excel jadvallar, hisoblash formulalari va misollar.</p>
+                        <a href="#" class="inline-flex items-center text-emerald-600 font-semibold text-sm hover:underline">
+                            Materiallarni ko'rish
+                        </a>
+                    </div>
+
+                    <!-- 4.4 Slaydlar -->
+                    <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:border-emerald-400 hover:shadow-lg transition duration-300 group">
+                        <div class="w-12 h-12 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition">📊</div>
+                        <h3 class="font-bold text-lg text-slate-900 mb-2">Taqdimot Slaydlari</h3>
+                        <p class="text-slate-500 text-sm mb-4">Vizual grafiklar va diagrammalar bilan boyitilgan slaydlar.</p>
+                        <a href="#" class="inline-flex items-center text-emerald-600 font-semibold text-sm hover:underline">
+                            Barchasini yuklash
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Amaliy Mashg'ulotlar -->
+        <section id="practice" class="section-padding bg-slate-900 text-white relative reveal">
+            <!-- Background Pattern -->
+            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#4b5563 1px, transparent 1px); background-size: 20px 20px;"></div>
+            
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="text-center mb-16">
+                    <span class="text-emerald-400 font-bold tracking-wider uppercase text-sm">Case Studies</span>
+                    <h2 class="text-4xl font-extrabold mt-2">Amaliy Mashg'ulotlar</h2>
+                    <p class="text-slate-400 mt-4 max-w-2xl mx-auto">Biznes reja parametrlarini hisoblash va tahlil qilish.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-10">
+                    <!-- Case Studies -->
+                    <div class="space-y-6">
+                        <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 hover:border-emerald-500 transition">
+                            <div class="flex items-start justify-between mb-4">
+                                <h3 class="font-bold text-xl text-emerald-300">1-Vazifa: Zararsizlik nuqtasi (Break-even)</h3>
+                                <span class="bg-emerald-900 text-emerald-200 text-xs px-2 py-1 rounded">Hisoblash</span>
+                            </div>
+                            <p class="text-slate-300 text-sm mb-4 leading-relaxed">
+                                Korxonaning doimiy xarajatlari 10,000$. Mahsulot narxi 50$. Bir birlik mahsulot uchun o'zgaruvchan xarajat 30$. Zararsizlik nuqtasini (dona) toping.
+                            </p>
+                            <button onclick="toggleAnswer('ans1')" class="text-emerald-400 font-bold text-sm hover:text-emerald-300 flex items-center">
+                                Javobni ko'rsatish
+                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div id="ans1" class="hidden mt-4 p-4 bg-slate-900/50 rounded border border-slate-700 text-emerald-300 font-mono">
+                                Formul: FC / (P - VC)<br>
+                                10,000 / (50 - 30) = 500 dona
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 hover:border-blue-500 transition">
+                            <div class="flex items-start justify-between mb-4">
+                                <h3 class="font-bold text-xl text-blue-300">2-Vazifa: Sof Foyda</h3>
+                                <span class="bg-blue-900 text-blue-200 text-xs px-2 py-1 rounded">Moliya</span>
+                            </div>
+                            <p class="text-slate-300 text-sm mb-4 leading-relaxed">
+                                Tushum: 100,000 so'm. Tannarx: 40,000 so'm. Operatsion xarajatlar: 20,000 so'm. Foyda solig'i: 15%. Sof foydani hisoblang.
+                            </p>
+                            <button onclick="toggleAnswer('ans2')" class="text-emerald-400 font-bold text-sm hover:text-emerald-300 flex items-center">
+                                Javobni ko'rsatish
+                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div id="ans2" class="hidden mt-4 p-4 bg-slate-900/50 rounded border border-slate-700 text-emerald-300 font-mono">
+                                Operatsion Foyda = 100k - 40k - 20k = 40,000<br>
+                                Soliq = 40,000 * 15% = 6,000<br>
+                                Sof Foyda = 40,000 - 6,000 = 34,000 so'm
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Section -->
+                    <div class="bg-gradient-to-br from-emerald-900 to-slate-900 rounded-2xl p-8 shadow-2xl border border-emerald-800">
+                        <div class="flex items-center mb-6">
+                            <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-bold mr-4">?</div>
+                            <div>
+                                <h3 class="text-2xl font-bold">Bilimni sinash</h3>
+                                <p class="text-slate-400 text-sm">Mini-test (3 ta savol)</p>
+                            </div>
+                        </div>
+                        
+                        <div id="quiz-container">
+                            <div class="space-y-4">
+                                <p class="text-emerald-200 italic text-center py-8">Moliyaviy savodxonligingizni tekshirib ko'ring.</p>
+                                <button onclick="startQuiz()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-xl shadow-lg transition transform hover:scale-105">Testni Boshlash</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Fan O'qituvchisi -->
+        <section id="teacher" class="section-padding bg-white reveal">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <span class="text-emerald-600 font-bold tracking-wider uppercase text-sm">Mentor</span>
+                    <h2 class="text-4xl font-extrabold text-slate-900 mt-2">Fan O'qituvchisi</h2>
+                </div>
+
+                <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row border border-slate-100">
+                    <!-- Photo Side -->
+                    <div class="md:w-2/5 relative">
+                        <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Professor" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-emerald-900/80 to-transparent md:bg-gradient-to-r"></div>
+                        <div class="absolute bottom-4 left-4 text-white md:hidden">
+                            <p class="font-bold text-lg">Sadullayev A.B.</p>
+                        </div>
+                    </div>
+
+                    <!-- Info Side -->
+                    <div class="md:w-3/5 p-10 flex flex-col justify-center">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h3 class="text-3xl font-bold text-slate-900">Sadullayev Anvar Botir o'g'li</h3>
+                                <p class="text-emerald-600 font-medium text-lg mt-1">Iqtisodiyot fanlari nomzodi, Dotsent</p>
+                            </div>
+                        </div>
+
+                        <p class="text-slate-600 mb-8 leading-relaxed">
+                            Moliya va bank ishi yo'nalishida 12 yillik tajribaga ega. "Biznesni rejalashtirish" va "Korporativ moliya" bo'yicha ilmiy ishlar muallifi.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                            <div class="flex items-center p-3 bg-slate-50 rounded-lg">
+                                <span class="text-xl mr-3">🎓</span>
+                                <div>
+                                    <span class="block text-xs text-slate-500 uppercase">Daraja</span>
+                                    <span class="font-bold text-slate-800">PhD</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-3 bg-slate-50 rounded-lg">
+                                <span class="text-xl mr-3">🏫</span>
+                                <div>
+                                    <span class="block text-xs text-slate-500 uppercase">Kafedra</span>
+                                    <span class="font-bold text-slate-800">Moliya</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex space-x-4">
+                            <a href="mailto:teacher@ipu.uz" class="flex-1 bg-emerald-600 text-white text-center py-3 rounded-lg font-bold hover:bg-emerald-700 transition shadow-lg shadow-emerald-500/30">
+                                Email Yozish
+                            </a>
+                            <a href="#contact" class="flex-1 border border-slate-300 text-slate-700 text-center py-3 rounded-lg font-bold hover:bg-slate-50 transition">
+                                Qabul vaqtlari
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Aloqa -->
+        <section id="contact" class="section-padding bg-slate-50 relative reveal">
+            <div class="container mx-auto px-4 max-w-5xl">
+                <div class="text-center mb-16">
+                    <span class="text-emerald-600 font-bold tracking-wider uppercase text-sm">Bog'lanish</span>
+                    <h2 class="text-4xl font-extrabold text-slate-900 mt-2">Aloqa va Manzil</h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-0 rounded-3xl overflow-hidden shadow-2xl bg-white">
+                    <!-- Info Panel -->
+                    <div class="bg-emerald-900 text-white p-10 flex flex-col justify-between relative overflow-hidden">
+                        <!-- Decor -->
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-800 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+                        <div class="absolute -bottom-8 -left-8 w-32 h-32 bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+
+                        <div class="relative z-10">
+                            <h3 class="text-2xl font-bold mb-6">Aloqa Ma'lumotlari</h3>
+                            <div class="space-y-6">
+                                <div class="flex items-start">
+                                    <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-emerald-100 text-sm uppercase mb-1">Manzil</h4>
+                                        <p class="font-light">Toshkent shahri, Universitet ko'chasi, 1-uy</p>
+                                        <p class="text-sm text-emerald-300 mt-1">Iqtisodiyot va pedagogika universiteti</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-emerald-100 text-sm uppercase mb-1">Email</h4>
+                                        <p class="font-light">finance@ipu.uz</p>
+                                        <p class="font-light">kafedra@ipu.uz</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="relative z-10 mt-10">
+                            <p class="text-sm opacity-60 mb-2">Ijtimoiy tarmoqlar:</p>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition">Telegram</a>
+                                <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition">Insta</a>
+                                <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition">Fb</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Panel -->
+                    <div class="p-10 bg-white">
+                        <form onsubmit="submitForm(event)" class="space-y-5">
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">Ismingiz</label>
+                                <input type="text" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition" placeholder="F.I.Sh" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">Email</label>
+                                <input type="email" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition" placeholder="student@example.com" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">Xabar</label>
+                                <textarea rows="4" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition" placeholder="Savolingizni yozing..." required></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-lg shadow-lg hover:shadow-emerald-500/40 transition transform active:scale-95">
+                                Xabarni Yuborish
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-300 py-12 border-t border-slate-800">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-1 md:col-span-2">
+                    <h4 class="text-white font-bold text-xl mb-4 tracking-tight">MOLIYAVIY BIZNES REJA</h4>
+                    <p class="text-sm opacity-70 leading-relaxed max-w-sm">
+                        Iqtisodiyot va pedagogika universitetining rasmiy o'quv portali. Talabalar uchun barcha o'quv-uslubiy materiallar jamlangan yagona baza.
+                    </p>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold mb-4">Tezkor Linklar</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#about" class="hover:text-emerald-400 transition">Fan haqida</a></li>
+                        <li><a href="#docs" class="hover:text-emerald-400 transition">Hujjatlar</a></li>
+                        <li><a href="#teacher" class="hover:text-emerald-400 transition">O'qituvchi</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold mb-4">Manzil</h5>
+                    <p class="text-sm opacity-70">Toshkent sh., Universitet ko'chasi 1-uy</p>
+                    <p class="text-sm opacity-70 mt-2">Tel: +998 (71) 123-45-67</p>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs opacity-50">
+                <p>© 2024 Iqtisodiyot va pedagogika universiteti. Barcha huquqlar himoyalangan.</p>
+                <p>Designed for Finance Students</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Smooth scrolling for navigation links with offset
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                    
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 80, // Offset for fixed header
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for Reveal Animation and Active Nav Link
+        const sections = document.querySelectorAll('section');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: "-100px 0px -100px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // Reveal animation
+                if (entry.isIntersecting) {
+                    entry.target.querySelector('.reveal')?.classList.add('active');
+                    entry.target.classList.add('active'); 
+                }
+
+                // Active Nav State
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    navItems.forEach(item => {
+                        item.classList.remove('active');
+                        // Simple check for href ending with #id
+                        if (item.getAttribute('href').endsWith(`#${id}`)) {
+                            item.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Trigger reveal for Hero section manually on load
+        window.addEventListener('load', () => {
+            document.querySelector('#home .reveal')?.classList.add('active');
+        });
+
+        // Helper functions
+        function toggleAnswer(id) {
+            const el = document.getElementById(id);
+            if (el.classList.contains('hidden')) {
+                el.classList.remove('hidden');
+                el.classList.add('block');
+            } else {
+                el.classList.add('hidden');
+                el.classList.remove('block');
+            }
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            const btn = event.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerText;
+            
+            btn.innerText = 'Yuborilmoqda...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                alert('Xabaringiz qabul qilindi! Tez orada siz bilan bog\'lanamiz.');
+                event.target.reset();
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }, 1500);
+        }
+
+        // Quiz Logic
+        const quizData = [
+            { question: "Biznes rejaning qaysi qismi eng muhim hisoblanadi?", a: "Marketing rejasi", b: "Moliyaviy reja", c: "Tashkiliy reja", d: "Xatarlar tahlili", correct: "b" },
+            { question: "NPV (Net Present Value) nima?", a: "Joriy sof qiymat", b: "Umumiy daromad", c: "Soliq to'lovlari", d: "Kredit foizi", correct: "a" },
+            { question: "Qaysi ko'rsatkich loyihaning o'zini oqlash muddatini bildiradi?", a: "IRR", b: "ROI", c: "Payback Period", d: "EBITDA", correct: "c" }
+        ];
+
+        function startQuiz() {
+            const container = document.getElementById('quiz-container');
+            let quizHTML = `<div class="bg-slate-800 text-white p-6 rounded-lg text-left shadow-inner animate-fade-in">`;
+            
+            quizData.forEach((item, index) => {
+                quizHTML += `
+                    <div class="mb-6 pb-6 border-b border-slate-700 last:border-0">
+                        <p class="font-bold mb-3 text-lg text-blue-300">${index + 1}. ${item.question}</p>
+                        <div class="space-y-2 text-sm">
+                            <label class="flex items-center cursor-pointer hover:text-emerald-400 transition bg-slate-700/50 p-3 rounded-lg"><input type="radio" name="q${index}" value="a" class="mr-3 form-radio text-emerald-500"> ${item.a}</label>
+                            <label class="flex items-center cursor-pointer hover:text-emerald-400 transition bg-slate-700/50 p-3 rounded-lg"><input type="radio" name="q${index}" value="b" class="mr-3 form-radio text-emerald-500"> ${item.b}</label>
+                            <label class="flex items-center cursor-pointer hover:text-emerald-400 transition bg-slate-700/50 p-3 rounded-lg"><input type="radio" name="q${index}" value="c" class="mr-3 form-radio text-emerald-500"> ${item.c}</label>
+                            <label class="flex items-center cursor-pointer hover:text-emerald-400 transition bg-slate-700/50 p-3 rounded-lg"><input type="radio" name="q${index}" value="d" class="mr-3 form-radio text-emerald-500"> ${item.d}</label>
+                        </div>
+                    </div>`;
+            });
+            quizHTML += `
+                <button onclick="submitQuiz()" class="w-full bg-emerald-600 text-white font-bold py-3 rounded-lg hover:bg-emerald-500 transition shadow-lg">Natijani Tekshirish</button>
+                <div id="quiz-result" class="mt-6 text-xl font-bold text-center hidden p-4 rounded-lg bg-slate-900"></div>
+            </div>`;
+            container.innerHTML = quizHTML;
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            quizData.forEach((item, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                if (selected && selected.value === item.correct) score++;
+            });
+            const res = document.getElementById('quiz-result');
+            res.classList.remove('hidden');
+            res.innerHTML = `Sizning natijangiz: <span class="${score === quizData.length ? 'text-green-400' : 'text-blue-400'}">${score} / ${quizData.length}</span>`;
+            
+            if(score === quizData.length) {
+                res.innerHTML += `<br><span class="text-sm text-slate-400 mt-2 block">Barakalla! Moliyachi bo'lishga tayyorsiz.</span>`;
+            }
+        }
+    </script>
+</body>
+</html>
